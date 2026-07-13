@@ -1,0 +1,69 @@
+{
+  "_readme": "Regulatory/political reception layer, hand-built 2026-07 from primary sources. score: 0-100 reception for large BYOP datacenter+PV builds. confidence: high = specific instruments/decisions verified in primary sources this session; medium = documented projects but no verified fast-track instrument; low = posture inferred, no direct evidence. This layer is interpretive by design — the dossier text and citations ARE the data, the score is just its projection onto one axis.",
+  "02": {
+    "name": "Aragón", "score": 95, "confidence": "high",
+    "instrument": "PIGA — Proyecto/Plan de Interés General de Aragón",
+    "dossier": "The most institutionally committed region in Spain. Datacenter projects are declared 'inversión de interés autonómico' then PIGA, unlocking expedited permitting and tax benefits. Microsoft's 'Región MSFT' PIGA (3 campuses: La Muela, Villamayor de Gállego, Zaragoza) initially approved after Sept 2025 submission; AWS expansion PIGA reached its third partial final approval in May 2026, with ~30 datacenter buildings planned. Regional government actively markets land+permits as a package. Nuance: visible local opposition current (water/land use, 'prosperidad destructiva' critique) but so far without decisive political traction.",
+    "sources": ["https://www.aragon.es/-/piga-microsoft", "https://www.aragon.es/-/expansion-aws-aragon", "https://www.datacenterdynamics.com/es/noticias/aws-proyecta-30-nuevos-edificios-de-data-centers-en-arag%C3%B3n/", "https://arainfo.org/los-centros-de-datos-y-su-prosperidad-destructiva-en-aragon/"]
+  },
+  "11": {
+    "name": "Extremadura", "score": 90, "confidence": "high",
+    "instrument": "PREMIA — Proyecto de Interés Empresarial Autonómico",
+    "dossier": "The emerging second pole, and arguably the better pure-BYOP fit: cheapest land in Spain, top-tier solar, and a government signing protocols at president level. PREMIA status declared for Merlin Edged's Navalmoral de la Mata campus (€1.6B); twin Valdecaballeros (Badajoz) campus announced — each up to 1 GW IT, PUE 1.15, explicitly renewables-driven. Region claims >€6B datacenter investment captured in about a year (Feb 2026). Nuance: thinner fiber/labor base than Madrid/Zaragoza corridors; Almaraz nuclear closure politics cuts both ways (grid headroom vs. anti-infrastructure sentiment).",
+    "sources": ["https://orbitanavalmoral.com/junta-declara-premia-proyecto-centro-de-datos-expacionavalmoral-merlin-edged/", "https://www.elespanol.com/invertia/disruptores/autonomias/extremadura/20260223/extremadura-suma-millones-euros-captacion-inversiones-centros-datos-ano/1003744138412_0.html", "https://ir.merlinproperties.com/en/new-opportunity-in-data-centers/"]
+  },
+  "08": {
+    "name": "Castilla-La Mancha", "score": 70, "confidence": "high",
+    "instrument": "Project-level support (Meta Talavera); no dedicated fast-track found",
+    "dossier": "Regional government supportive — Meta's Talavera de la Reina hyperscale campus cleared a key step Dec 2025 and construction has begun. But this is also the national lightning rod for datacenter water opposition: peak demand of 120 L/s equals over half of Talavera's consumption, and the project became the reference case for Ecologistas en Acción's national campaign. A BYOP dry-cooled design partially sidesteps the water objection, but the social terrain is pre-heated. Land and solar are excellent.",
+    "sources": ["https://www.infoclm.es/toledo/2025/12/23/paso-clave-para-el-meta-data-center-en-talavera-los-detalles/", "https://www.ecologistasenaccion.org/335825/ecologistas-en-accion-denuncia-la-burbuja-de-centros-de-datos-un-modelo-insostenible-que-agrava-la-crisis-climatica-e-hidrica/"]
+  },
+  "13": {
+    "name": "Comunidad de Madrid", "score": 60, "confidence": "medium",
+    "instrument": "None specific; pro-business administration",
+    "dossier": "Spain's colo capital and fiber hub, but the wrong fit for BYOP at scale: the most saturated distribution nodes in the country, expensive fragmented land, and the existing cluster competes for every buildable plot. For an edge/latency-sensitive site the calculus flips — proximity to the Madrid interconnection ecosystem is the point.",
+    "sources": ["https://aelec.es/mapas-de-capacidad-saturacion-de-la-red/"]
+  },
+  "07": {
+    "name": "Castilla y León", "score": 65, "confidence": "low",
+    "instrument": "No dedicated instrument found",
+    "dossier": "Land-rich, solar-decent, depopulating provinces actively courting industrial investment; historically fast comparative permitting for utility PV. No flagship datacenter fast-track surfaced in this research pass — treat the score as posture, not proof. Watch item: it borders both the Madrid fiber ring and Aragon corridor.",
+    "sources": []
+  },
+  "01": {
+    "name": "Andalucía", "score": 65, "confidence": "low",
+    "instrument": "'Unidad Aceleradora de Proyectos' (general investment accelerator, not DC-specific)",
+    "dossier": "Pro-investment administration with a general project-acceleration unit and Spain's largest solar resource. Datacenter activity concentrated around Málaga/Sevilla remains modest. Southern water stress is real and politically salient — dry-cooled BYOP is the defensible configuration here.",
+    "sources": []
+  },
+  "10": {
+    "name": "Comunitat Valenciana", "score": 55, "confidence": "medium",
+    "instrument": "Project-level support (Picassent)",
+    "dossier": "Documented hyperscale-class project at Picassent. Coastal land competition and agriculture politics limit cheap large parcels; interior (Requena plateau) is the plausible BYOP zone.",
+    "sources": ["https://www.elsaltodiario.com/internet/fiebre-centros-datos-sube-temperatura-crisis-energetica-global"]
+  },
+  "12": {
+    "name": "Galicia", "score": 55, "confidence": "medium",
+    "instrument": "Project-level (A Coruña)",
+    "dossier": "A Coruña datacenter project documented; region is wind-heavy rather than solar-heavy, and the solar case is the weakest on the peninsula — BYOP solar+BESS math is structurally worse here.",
+    "sources": ["https://www.elsaltodiario.com/internet/fiebre-centros-datos-sube-temperatura-crisis-energetica-global"]
+  },
+  "16": {
+    "name": "País Vasco / Euskadi", "score": 55, "confidence": "medium",
+    "instrument": "Project-level (Arasur, Álava)",
+    "dossier": "Merlin's Arasur (Ribera Baja, Álava) site documented. Strong industrial fabric and fiber, but scarce cheap land and modest solar resource cap the BYOP case.",
+    "sources": ["https://www.elsaltodiario.com/internet/fiebre-centros-datos-sube-temperatura-crisis-energetica-global"]
+  },
+  "09": {
+    "name": "Cataluña", "score": 45, "confidence": "medium",
+    "instrument": "None found; comparatively slow permitting",
+    "dossier": "Active colo market in Barcelona, but for greenfield BYOP: severely saturated grid nodes, dense land use, comparatively slow renewables permitting (Catalonia has chronically lagged Spain in utility PV build-out), and strong organized environmental activism. No fast-track instrument surfaced.",
+    "sources": []
+  },
+  "14": {"name": "Región de Murcia", "score": 55, "confidence": "low", "instrument": "None found", "dossier": "Top-3 solar resource and cheap interior land; acute water stress makes any wet-cooled design politically radioactive — dry-cooled BYOP only. No DC-specific instrument found.", "sources": []},
+  "15": {"name": "Navarra", "score": 50, "confidence": "low", "instrument": "None found", "dossier": "Renewables-experienced administration; modest land availability and solar vs. the southern meseta. No datacenter signal found either way.", "sources": []},
+  "17": {"name": "La Rioja", "score": 50, "confidence": "low", "instrument": "None found", "dossier": "Small region, no signal found either way.", "sources": []},
+  "03": {"name": "Principado de Asturias", "score": 45, "confidence": "low", "instrument": "None found", "dossier": "Industrial land and cool climate but weak solar; BYOP solar math is poor. No signal found.", "sources": []},
+  "06": {"name": "Cantabria", "score": 45, "confidence": "low", "instrument": "None found", "dossier": "Weak solar, mountainous, no signal found.", "sources": []},
+  "04": {"name": "Illes Balears", "score": 30, "confidence": "medium", "instrument": "None; restrictive land politics", "dossier": "Island grid, extreme land scarcity, tourism-driven land politics hostile to industrial use. Included for completeness; interesting only for small edge sites serving local demand.", "sources": []}
+}

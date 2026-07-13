@@ -1,0 +1,1602 @@
+[
+ {
+  "name": "AWS El Burgo de Ebro",
+  "lat": 41.53673,
+  "lon": -0.68596,
+  "status": "operating",
+  "note": "AWS Aragon region; PIGA expansion approved 2026, ~30 buildings planned \u00b7 baxtel: operational",
+  "src": "research"
+ },
+ {
+  "name": "AWS Villanueva de Gallego",
+  "lat": 41.79395,
+  "lon": -0.84757,
+  "status": "operating",
+  "note": "AWS Aragon region AZ \u00b7 baxtel: operational",
+  "src": "research"
+ },
+ {
+  "name": "AWS Huesca",
+  "lat": 42.14,
+  "lon": -0.41,
+  "status": "operating",
+  "note": "AWS Aragon region AZ",
+  "src": "research"
+ },
+ {
+  "name": "Microsoft La Muela",
+  "lat": 41.61473,
+  "lon": -1.08892,
+  "status": "announced",
+  "note": "Region MSFT PIGA, initial approval \u00b7 baxtel: landbank",
+  "src": "research"
+ },
+ {
+  "name": "Microsoft Villamayor de Gallego",
+  "lat": 41.66129,
+  "lon": -0.77153,
+  "status": "announced",
+  "note": "Region MSFT PIGA \u00b7 baxtel: landbank",
+  "src": "research"
+ },
+ {
+  "name": "Microsoft Zaragoza",
+  "lat": 41.60935,
+  "lon": -0.89754,
+  "status": "announced",
+  "note": "Region MSFT PIGA, 3rd campus \u00b7 baxtel: landbank",
+  "src": "research"
+ },
+ {
+  "name": "Meta Talavera de la Reina",
+  "lat": 39.95554,
+  "lon": -4.94694,
+  "status": "construction",
+  "note": "Hyperscale; national water-controversy reference case \u00b7 baxtel: construction",
+  "src": "research"
+ },
+ {
+  "name": "Merlin Edged Navalmoral",
+  "lat": 39.9,
+  "lon": -5.54,
+  "status": "announced",
+  "note": "PREMIA declared, EUR 1.6B, up to 1 GW IT \u00b7 baxtel: planned",
+  "src": "research"
+ },
+ {
+  "name": "Merlin Edged Valdecaballeros",
+  "lat": 39.24,
+  "lon": -5.19,
+  "status": "announced",
+  "note": "Twin campus, up to 1 GW IT \u00b7 baxtel: planned",
+  "src": "research"
+ },
+ {
+  "name": "Merlin Arasur (Alava)",
+  "lat": 42.69849,
+  "lon": -2.90863,
+  "status": "operating",
+  "note": "Operating/expanding \u00b7 baxtel: operational",
+  "src": "research"
+ },
+ {
+  "name": "A Coruna DC",
+  "lat": 43.36,
+  "lon": -8.41,
+  "status": "announced",
+  "note": "Announced project",
+  "src": "research"
+ },
+ {
+  "name": "Picassent DC",
+  "lat": 39.36,
+  "lon": -0.46,
+  "status": "announced",
+  "note": "Announced (Valencia)",
+  "src": "research"
+ },
+ {
+  "name": "Tillion Aragon (Azora)",
+  "lat": 41.7047,
+  "lon": -0.75114,
+  "status": "announced",
+  "note": "Hyperscale campus, Villamayor de Gallego (Azora/Tillion) \u00b7 baxtel: planned",
+  "src": "research"
+ },
+ {
+  "name": "ACS La Puebla de Alfinden",
+  "lat": 41.64201,
+  "lon": -0.75284,
+  "status": "announced",
+  "note": "150 MW, EUR 1.2B, construction planned H1 2027",
+  "src": "research"
+ },
+ {
+  "name": "Green IT Aragon (SAMCA)",
+  "lat": 41.74766,
+  "lon": -1.1943,
+  "status": "announced",
+  "note": "EUR 2.6B campus, 300 MW planned, Pedrola/Luceni, local renewables",
+  "src": "research"
+ },
+ {
+  "name": "DayOne Aragon Escatron",
+  "lat": 41.27769,
+  "lon": -0.22392,
+  "status": "announced",
+  "note": "Campus leveraging adjacent gas plant + renewables \u2014 BYOP-adjacent",
+  "src": "research"
+ },
+ {
+  "name": "Vantage Zaragoza",
+  "lat": 41.74461,
+  "lon": -0.83922,
+  "status": "announced",
+  "note": "EUR 3.2B hyperscale campus, 40 ha, 5 phases, Villanueva de Gallego \u00b7 baxtel: planned",
+  "src": "research"
+ },
+ {
+  "name": "QTS Calatorao (Blackstone)",
+  "lat": 41.52,
+  "lon": -1.35,
+  "status": "announced",
+  "note": "300 MW planned campus",
+  "src": "research"
+ },
+ {
+  "name": "Box2bit Calatayud",
+  "lat": 41.35,
+  "lon": -1.64,
+  "status": "land",
+  "note": "400,000 m2 site secured, Poligono La Charluca \u00b7 baxtel: landbank",
+  "src": "research"
+ },
+ {
+  "name": "Box2bit Proyecto Ebro",
+  "lat": 41.34,
+  "lon": -1.22,
+  "status": "announced",
+  "note": "EUR 3.4B, Carinena (Entrevinas industrial estate) \u00b7 baxtel: landbank",
+  "src": "research"
+ },
+ {
+  "name": "Iridium PTR Zaragoza",
+  "lat": 41.6,
+  "lon": -0.83,
+  "status": "land",
+  "note": "18 ha acquired in Parque Tecnologico del Reciclado",
+  "src": "research"
+ },
+ {
+  "name": "AWS La Puebla de Hijar",
+  "lat": 41.27359,
+  "lon": -0.47856,
+  "status": "announced",
+  "note": "AWS eu-south-2 expansion site (Teruel)",
+  "src": "research"
+ },
+ {
+  "name": "AWS San Mateo de Gallego",
+  "lat": 41.83,
+  "lon": -0.77,
+  "status": "announced",
+  "note": "AWS eu-south-2 expansion site",
+  "src": "research"
+ },
+ {
+  "name": "Proyecto Altamira (Stoneshield)",
+  "lat": 43.38,
+  "lon": -3.87,
+  "status": "announced",
+  "note": "XDC Properties multi-building campus, Villaescusa (Cantabria); PE-backed",
+  "src": "research"
+ },
+ {
+  "name": "EdgeMode Mora",
+  "lat": 39.68,
+  "lon": -3.77,
+  "status": "announced",
+  "note": "300 MW NATURAL-GAS behind-the-meter campus w/ Bloom Energy fuel cells \u2014 BYOP precedent, gas variant",
+  "src": "research"
+ },
+ {
+  "name": "Box2bit AXIS South (Recas)",
+  "lat": 40.06,
+  "lon": -3.99,
+  "status": "land",
+  "note": "134,000 m2 site, half of AXIS project \u00b7 baxtel: landbank",
+  "src": "research"
+ },
+ {
+  "name": "Calle de Albasanz 73 (MAD2)",
+  "lat": 40.43962,
+  "lon": -3.62095,
+  "status": "operating",
+  "note": "Digital Realty \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Calle de Alfonso G\u00f3mez 4 (MAD4)",
+  "lat": 40.43841,
+  "lon": -3.62975,
+  "status": "operating",
+  "note": "Digital Realty \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "nLighten Madrid MA1",
+  "lat": 40.49049,
+  "lon": -3.69107,
+  "status": "operating",
+  "note": "nLighten \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "GDC - Madrid 1 Data Center",
+  "lat": 40.49985,
+  "lon": -3.89047,
+  "status": "operating",
+  "note": "NTT DATA, Inc. \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "CyrusOne MAD1 - Alcobendas",
+  "lat": 40.53534,
+  "lon": -3.66014,
+  "status": "operating",
+  "note": "CyrusOne Data Centers \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Equinix MD2",
+  "lat": 40.53684,
+  "lon": -3.64866,
+  "status": "operating",
+  "note": "Equinix \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Adam MAD TecnoAlcal\u00e1",
+  "lat": 40.51462,
+  "lon": -3.33864,
+  "status": "operating",
+  "note": "Adam \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Equinix MD1",
+  "lat": 40.51351,
+  "lon": -3.67188,
+  "status": "operating",
+  "note": "Equinix \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Global Switch Madrid 1",
+  "lat": 40.44797,
+  "lon": -3.57467,
+  "status": "operating",
+  "note": "Global Switch \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Edged Madrid-Getafe",
+  "lat": 40.31105,
+  "lon": -3.69345,
+  "status": "operating",
+  "note": "Edged Energy \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Iron Mountain Data Centers MAD-1",
+  "lat": 40.45909,
+  "lon": -3.49771,
+  "status": "construction",
+  "note": "Iron Mountain Data Centers \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "Templus Madrid MAD01",
+  "lat": 40.49175,
+  "lon": -3.39419,
+  "status": "operating",
+  "note": "Templus \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "acens Madrid",
+  "lat": 40.52669,
+  "lon": -3.66079,
+  "status": "operating",
+  "note": "Acens Technologies \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "IT Nexus Data Center",
+  "lat": 40.60996,
+  "lon": -3.69573,
+  "status": "operating",
+  "note": "COS Global Services \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Templus Madrid MAD02",
+  "lat": 40.48667,
+  "lon": -3.66483,
+  "status": "operating",
+  "note": "Templus \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Quetta DC Tres Cantos",
+  "lat": 40.61741,
+  "lon": -3.70239,
+  "status": "construction",
+  "note": "Quetta Data Centers \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "Cogent Data Center - Madrid",
+  "lat": 40.56442,
+  "lon": -3.59752,
+  "status": "operating",
+  "note": "Cogent Communications, Inc. \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "NxN Datacenter Madrid",
+  "lat": 40.45169,
+  "lon": -3.6248,
+  "status": "construction",
+  "note": "NxN Datacenters \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "DATA4 Madrid Campus MAD02",
+  "lat": 40.67063,
+  "lon": -3.6074,
+  "status": "announced",
+  "note": "DATA4 \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: planned",
+  "src": "dcm"
+ },
+ {
+  "name": "EspacioRack Data Center",
+  "lat": 40.39596,
+  "lon": -3.79582,
+  "status": "operating",
+  "note": "ESPACIORACK \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Espanix Datacenter",
+  "lat": 40.46589,
+  "lon": -3.66141,
+  "status": "operating",
+  "note": "Espanix \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Kyndryl DC Torrejon",
+  "lat": 40.45408,
+  "lon": -3.50564,
+  "status": "operating",
+  "note": "Kyndryl \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "PureDC Madrid (Meco)",
+  "lat": 40.53211,
+  "lon": -3.31305,
+  "status": "construction",
+  "note": "Pure Data Centres Group \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Iridium Alcal\u00e1 de Henares",
+  "lat": 40.51096,
+  "lon": -3.31974,
+  "status": "construction",
+  "note": "Iridium Concesiones de Infraestructuras, S.A. \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "Adam MAD",
+  "lat": 40.21366,
+  "lon": -3.92615,
+  "status": "operating",
+  "note": "Adam \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Econocom Madrid",
+  "lat": 40.46678,
+  "lon": -3.67163,
+  "status": "operating",
+  "note": "Econocom \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Cisco Real Madrid City",
+  "lat": 40.48003,
+  "lon": -3.6127,
+  "status": "operating",
+  "note": "Cisco Systems \u00b7 Enterprise (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Microsoft Madrid (MAD1)",
+  "lat": 40.59325,
+  "lon": -3.54978,
+  "status": "operating",
+  "note": "Microsoft \u00b7 Hyperscaler (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Microsoft Alcal\u00e1 de Henares",
+  "lat": 40.47431,
+  "lon": -3.39568,
+  "status": "land",
+  "note": "Microsoft \u00b7 Hyperscaler (datacentermap listing; status unverified) \u00b7 baxtel: landbank",
+  "src": "dcm"
+ },
+ {
+  "name": "IslaLink Madrid Data Center",
+  "lat": 40.45312,
+  "lon": -3.58356,
+  "status": "operating",
+  "note": "IslaLink \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Apto DC Madrid Campus",
+  "lat": 40.3014,
+  "lon": -3.81658,
+  "status": "construction",
+  "note": "Apto DC \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "Vodafone Atocha Data Center",
+  "lat": 40.40438,
+  "lon": -3.69844,
+  "status": "operating",
+  "note": "Vodafone \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Vodafone La Florida Data Center",
+  "lat": 40.4666,
+  "lon": -3.80233,
+  "status": "operating",
+  "note": "Vodafone \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Av. del Maresme, 43 (BCN1)",
+  "lat": 41.42949,
+  "lon": 2.23209,
+  "status": "operating",
+  "note": "Digital Realty \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "EdgeConneX Barcelona - EDCBCN01",
+  "lat": 41.32461,
+  "lon": 2.03333,
+  "status": "operating",
+  "note": "EdgeConneX \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Templus Barcelona BCN01",
+  "lat": 41.34883,
+  "lon": 2.12955,
+  "status": "operating",
+  "note": "Templus \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Adam PTV",
+  "lat": 41.48975,
+  "lon": 2.12326,
+  "status": "operating",
+  "note": "Adam \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "Adam BCN",
+  "lat": 41.40896,
+  "lon": 2.17011,
+  "status": "operating",
+  "note": "Adam \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Templus Barcelona BCN02",
+  "lat": 41.34946,
+  "lon": 2.13876,
+  "status": "operating",
+  "note": "Templus \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Edged Barcelona",
+  "lat": 41.34188,
+  "lon": 2.12949,
+  "status": "operating",
+  "note": "Edged Energy \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Equinix BA2",
+  "lat": 41.35162,
+  "lon": 2.09965,
+  "status": "operating",
+  "note": "Equinix \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "hscale BCN1",
+  "lat": 41.48533,
+  "lon": 2.10878,
+  "status": "operating",
+  "note": "hscale \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: planned",
+  "src": "dcm"
+ },
+ {
+  "name": "Oxigen DC Sant Cugat del Vall\u00e8s",
+  "lat": 41.49287,
+  "lon": 2.05533,
+  "status": "operating",
+  "note": "Oxigen Data Center \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Nabiax Terrassa",
+  "lat": 41.57212,
+  "lon": 2.01222,
+  "status": "operating",
+  "note": "Nabiax \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Mediacloud Edificio Imagina",
+  "lat": 41.40469,
+  "lon": 2.19376,
+  "status": "operating",
+  "note": "Mediacloud \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "T-Systems CPD22",
+  "lat": 41.39357,
+  "lon": 2.19045,
+  "status": "operating",
+  "note": "T-Systems Iberia \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Kyndryl DC San Fruitos",
+  "lat": 41.77825,
+  "lon": 1.86643,
+  "status": "operating",
+  "note": "Kyndryl \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "acens Barcelona",
+  "lat": 41.37889,
+  "lon": 2.14384,
+  "status": "operating",
+  "note": "Acens Technologies \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "EXA Barcelona",
+  "lat": 41.50199,
+  "lon": 2.13322,
+  "status": "operating",
+  "note": "EXA Infrastructure \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Vodafone Barcelona Data Center",
+  "lat": 41.39481,
+  "lon": 2.19823,
+  "status": "operating",
+  "note": "Vodafone \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "NIXVAL Data Center",
+  "lat": 39.51969,
+  "lon": -0.46697,
+  "status": "operating",
+  "note": "NIXVAL \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Nunsys Paterna Data Center",
+  "lat": 39.54573,
+  "lon": -0.45537,
+  "status": "operating",
+  "note": "Nunsys \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "VDPC Data Center",
+  "lat": 39.65319,
+  "lon": -0.22202,
+  "status": "operating",
+  "note": "Valencia Digital Port Connect (VDPC) \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "NxN Datacenter Valencia (NX01)",
+  "lat": 39.46248,
+  "lon": -0.4101,
+  "status": "construction",
+  "note": "NxN Datacenters \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "ProRed Data Center",
+  "lat": 39.55407,
+  "lon": -0.46736,
+  "status": "operating",
+  "note": "PRORED COMUNICACIONES S.L. \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Kumo Valencia",
+  "lat": 39.51565,
+  "lon": -0.44871,
+  "status": "operating",
+  "note": "Kumo Networks \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Digital Value Data Center",
+  "lat": 39.44772,
+  "lon": -0.37012,
+  "status": "operating",
+  "note": "DIGITAL VALUE \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "IslaLink Valencia Center",
+  "lat": 39.4401,
+  "lon": -0.37008,
+  "status": "operating",
+  "note": "IslaLink \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "EXA Edge DC Valencia",
+  "lat": 39.47322,
+  "lon": -0.5369,
+  "status": "operating",
+  "note": "EXA Infrastructure \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Kumo Murcia",
+  "lat": 38.02467,
+  "lon": -1.17084,
+  "status": "operating",
+  "note": "Kumo Networks \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "SYS4NET Datacenter Murcia",
+  "lat": 37.95867,
+  "lon": -1.194,
+  "status": "operating",
+  "note": "Grupo SYS4NET, S.L. \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "CPD Titan",
+  "lat": 38.02967,
+  "lon": -1.16351,
+  "status": "operating",
+  "note": "Fibra Medios Telecom SL \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "DataRush Malaga I",
+  "lat": 36.69762,
+  "lon": -4.48216,
+  "status": "operating",
+  "note": "DataRush IT Services \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Templus Malaga MAL01",
+  "lat": 36.69455,
+  "lon": -4.47455,
+  "status": "operating",
+  "note": "Templus \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "DataRush Malaga II",
+  "lat": 36.69636,
+  "lon": -4.49483,
+  "status": "operating",
+  "note": "DataRush IT Services \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Box2bit Malaga",
+  "lat": 36.71058,
+  "lon": -4.47467,
+  "status": "construction",
+  "note": "Box2bit \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "Grupo Aire OASIX Malaga",
+  "lat": 36.73264,
+  "lon": -4.54731,
+  "status": "operating",
+  "note": "Grupo Aire | OASIX \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Arsys Logro\u00f1o Data Center Portalada",
+  "lat": 42.45696,
+  "lon": -2.39764,
+  "status": "operating",
+  "note": "Arsys Internet S.L. \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "CORDOBA DATACENTER // TICNEXT",
+  "lat": 37.85153,
+  "lon": -4.79919,
+  "status": "operating",
+  "note": "CORDOBA DATACENTER // TICNEXT \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Walhalla Data Center",
+  "lat": 39.99603,
+  "lon": -0.07445,
+  "status": "operating",
+  "note": "Walhalla \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "ADI Data Center Garaia",
+  "lat": 43.06811,
+  "lon": -2.50707,
+  "status": "construction",
+  "note": "Atlantic Data Infrastructure (ADI) \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: construction",
+  "src": "dcm"
+ },
+ {
+  "name": "ADI Data Center Euskadi",
+  "lat": 43.32922,
+  "lon": -3.08504,
+  "status": "operating",
+  "note": "Atlantic Data Infrastructure (ADI) \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Sarenet Derio/Zamudio",
+  "lat": 43.29885,
+  "lon": -2.86873,
+  "status": "operating",
+  "note": "Sarenet \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "EXA Bilbao",
+  "lat": 43.22853,
+  "lon": -2.8805,
+  "status": "operating",
+  "note": "EXA Infrastructure \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Redestel Data Center",
+  "lat": 41.67039,
+  "lon": -0.85238,
+  "status": "operating",
+  "note": "Redestel, SL \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Iridium Zaragoza",
+  "lat": 41.58202,
+  "lon": -0.84694,
+  "status": "operating",
+  "note": "Iridium Concesiones de Infraestructuras, S.A. \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "DXC Zaragoza Data Center",
+  "lat": 41.65499,
+  "lon": -0.99087,
+  "status": "operating",
+  "note": "DXC Technology \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Grupo Aire OASIX Zaragoza",
+  "lat": 41.66877,
+  "lon": -0.88892,
+  "status": "operating",
+  "note": "Grupo Aire | OASIX \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "UNIZAR Primary Data Center",
+  "lat": 41.64274,
+  "lon": -0.89929,
+  "status": "operating",
+  "note": "University of Zaragoza \u00b7 Enterprise (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "UNIZAR Backup Data Center",
+  "lat": 41.68343,
+  "lon": -0.88413,
+  "status": "operating",
+  "note": "University of Zaragoza \u00b7 Enterprise (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Grupo Aire OASIX Toledo",
+  "lat": 39.95693,
+  "lon": -4.84401,
+  "status": "operating",
+  "note": "Grupo Aire | OASIX \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Templus Sevilla SEV01",
+  "lat": 37.39631,
+  "lon": -5.94804,
+  "status": "operating",
+  "note": "Templus \u00b7 Colocation (datacentermap listing; status unverified) \u00b7 baxtel: operational",
+  "src": "dcm"
+ },
+ {
+  "name": "Sevilla Data Center",
+  "lat": 37.4847,
+  "lon": -5.93039,
+  "status": "operating",
+  "note": "Comvive Servidores, S.L. \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Axion Data Center Sevilla",
+  "lat": 37.41349,
+  "lon": -6.06711,
+  "status": "operating",
+  "note": "Axi\u00f3n \u00b7 Colocation (datacentermap listing; status unverified)",
+  "src": "dcm"
+ },
+ {
+  "name": "Ingenostrum: Galicia Green DC",
+  "lat": 43.15435,
+  "lon": -8.0183,
+  "status": "construction",
+  "note": "Nostrum Group \u00b7 Carrier-Neutral (baxtel: construction)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Tedra Sistemas SL",
+  "lat": 43.01645,
+  "lon": -7.56134,
+  "status": "operating",
+  "note": "Grupo TEDRA \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Ingenostrum: Nostrum Evergreen",
+  "lat": 38.8782,
+  "lon": -6.97048,
+  "status": "announced",
+  "note": "Nostrum Group \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Fotowatio: Lusitanus Project",
+  "lat": 38.8365,
+  "lon": -6.35422,
+  "status": "land",
+  "note": "Fotowatio Renewable Ventures (FRV) \u00b7 Energy (baxtel: landbank)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Ingenostrum: CC Green",
+  "lat": 39.47543,
+  "lon": -6.37344,
+  "status": "announced",
+  "note": "Nostrum Group \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Orange Maroc: Tangier DC4",
+  "lat": 35.76964,
+  "lon": -5.80318,
+  "status": "operating",
+  "note": "Orange \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "TEDRA LE01",
+  "lat": 42.61678,
+  "lon": -5.56629,
+  "status": "operating",
+  "note": "Grupo TEDRA \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: GDC Alberche",
+  "lat": 39.91421,
+  "lon": -4.67709,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Substrate AI: Talavera de la Reina",
+  "lat": 39.95186,
+  "lon": -4.93904,
+  "status": "announced",
+  "note": "Substrate AI \u00b7 Enterprise (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: GDC Hormigos",
+  "lat": 40.09725,
+  "lon": -4.44534,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: Green DC C\u00f3rdoba",
+  "lat": 38.46999,
+  "lon": -4.66988,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "M\u00e1laga Data Center",
+  "lat": 36.70338,
+  "lon": -4.43848,
+  "status": "operating",
+  "note": "M\u00e1laga Data Center \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: GDC Las Cama\u00f1a",
+  "lat": 37.5688,
+  "lon": -5.42656,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Templus: Ceuta",
+  "lat": 35.8871,
+  "lon": -5.31017,
+  "status": "construction",
+  "note": "Templus \u00b7 Carrier-Neutral (baxtel: construction)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Stoneshield: Altamira I ",
+  "lat": 43.38858,
+  "lon": -3.86204,
+  "status": "announced",
+  "note": "Stoneshield Capital \u00b7 Private Equity (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Orange: Santander",
+  "lat": 43.44519,
+  "lon": -3.85448,
+  "status": "operating",
+  "note": "Orange \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Sarenet: Zamudio 2",
+  "lat": 43.29195,
+  "lon": -2.88734,
+  "status": "operating",
+  "note": "Sarenet \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Telxius Derio Communications Hub",
+  "lat": 43.29545,
+  "lon": -2.88494,
+  "status": "operating",
+  "note": "Telxius \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Sarenet: Zamudio",
+  "lat": 43.29095,
+  "lon": -2.85885,
+  "status": "operating",
+  "note": "Sarenet \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Fortinet: Guadalajara",
+  "lat": 40.74336,
+  "lon": -3.0312,
+  "status": "operating",
+  "note": "Fortinet \u00b7 Enterprise (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Digital Realty: MAD3",
+  "lat": 40.43388,
+  "lon": -3.62411,
+  "status": "operating",
+  "note": "Digital Realty Trust \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "AtlasEdge: Calle de Telemaco",
+  "lat": 40.44799,
+  "lon": -3.6454,
+  "status": "operating",
+  "note": "AtlasEdge \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Avaio: Madrid Scorpio",
+  "lat": 40.61082,
+  "lon": -3.53382,
+  "status": "construction",
+  "note": "AVAIO Digital Partners \u00b7 Real Estate (baxtel: construction)",
+  "src": "baxtel"
+ },
+ {
+  "name": "inAsset NixMad",
+  "lat": 40.37375,
+  "lon": -3.64197,
+  "status": "operating",
+  "note": "inAsset Networks, S.L\r\n \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "hscale: Madrid MAD1",
+  "lat": 40.37794,
+  "lon": -3.75114,
+  "status": "announced",
+  "note": "hscale \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Kyndryl: Madrid",
+  "lat": 40.42291,
+  "lon": -3.52901,
+  "status": "operating",
+  "note": "Kyndryl \u00b7 Content (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Equinix MD4x",
+  "lat": 40.41663,
+  "lon": -3.70342,
+  "status": "construction",
+  "note": "Equinix \u00b7 Carrier-Neutral (baxtel: construction)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Echelon Iberdrola: Madrid South",
+  "lat": 40.42134,
+  "lon": -3.70136,
+  "status": "announced",
+  "note": "Echelon Data Centres \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Microsoft: San Sebastian",
+  "lat": 40.54903,
+  "lon": -3.61347,
+  "status": "operating",
+  "note": "Microsoft Azure \u00b7 Hyperscale (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Goodman: Madrid 01",
+  "lat": 40.44381,
+  "lon": -3.54584,
+  "status": "construction",
+  "note": "Goodman Group \u00b7 Real Estate (baxtel: construction)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Adam Madrid",
+  "lat": 40.29236,
+  "lon": -3.98289,
+  "status": "operating",
+  "note": "Adam \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Nabiax: Juli\u00e1n Camarillo Campus",
+  "lat": 40.43414,
+  "lon": -3.62961,
+  "status": "operating",
+  "note": "Nabiax \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Edgnex: Madrid",
+  "lat": 40.40304,
+  "lon": -3.58429,
+  "status": "construction",
+  "note": "DAMAC Digital \u00b7 Carrier-Neutral (baxtel: construction)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Nabiax: Alcal\u00e1 de Henares",
+  "lat": 40.51954,
+  "lon": -3.34122,
+  "status": "operating",
+  "note": "Nabiax \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Google: Alcal\u00e1 de Henares",
+  "lat": 40.51954,
+  "lon": -3.34087,
+  "status": "operating",
+  "note": "Google \u00b7 Hyperscale (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Cogent Madrid",
+  "lat": 40.55894,
+  "lon": -3.62617,
+  "status": "operating",
+  "note": "Cogent Communications \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: GDC Cueva",
+  "lat": 39.66465,
+  "lon": -4.21154,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: GDC Ardosa",
+  "lat": 39.87523,
+  "lon": -3.94135,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: GDC Toledo",
+  "lat": 39.86284,
+  "lon": -4.02718,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: GDC Lobera",
+  "lat": 39.86284,
+  "lon": -4.02718,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: Toledo Expansion\n",
+  "lat": 39.86284,
+  "lon": -4.02718,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Solaria: Puertollano, Ciudad Real",
+  "lat": 38.67211,
+  "lon": -4.15077,
+  "status": "announced",
+  "note": "Solaria Energ\u00eda y Medio Ambiente  \u00b7 Enterprise (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Sierra DC: SP01 Expansion",
+  "lat": 37.08175,
+  "lon": -3.75423,
+  "status": "announced",
+  "note": "Sierra DC \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Sierra DC: Citai SP01",
+  "lat": 37.08257,
+  "lon": -3.75252,
+  "status": "construction",
+  "note": "Sierra DC \u00b7 Carrier-Neutral (baxtel: construction)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Ibercom San Sebati\u00e1n",
+  "lat": 43.2972,
+  "lon": -2.00878,
+  "status": "operating",
+  "note": "Ibercom \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "VDR: Navarre Campus",
+  "lat": 42.7818,
+  "lon": -1.70769,
+  "status": "announced",
+  "note": "VDR (Spain) \u00b7 Real Estate (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Solaria: Basque Country",
+  "lat": 42.98958,
+  "lon": -2.61887,
+  "status": "announced",
+  "note": "Solaria Energ\u00eda y Medio Ambiente  \u00b7 Enterprise (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: GDC Las Valeras",
+  "lat": 39.76844,
+  "lon": -2.15778,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: Vianos",
+  "lat": 38.63216,
+  "lon": -2.50111,
+  "status": "land",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: landbank)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: GDC Alcaraz",
+  "lat": 38.66648,
+  "lon": -2.49081,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "EdgeMode: Alcaraz Expansion",
+  "lat": 38.66648,
+  "lon": -2.49081,
+  "status": "announced",
+  "note": "EdgeMode \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Amazon: Walqa",
+  "lat": 42.10688,
+  "lon": -0.45937,
+  "status": "construction",
+  "note": "Amazon AWS \u00b7 Hyperscale (baxtel: construction)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Amazon: Huesca",
+  "lat": 42.10357,
+  "lon": -0.45181,
+  "status": "operating",
+  "note": "Amazon AWS \u00b7 Hyperscale (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Amazon: Huesca 2",
+  "lat": 42.10306,
+  "lon": -0.45044,
+  "status": "construction",
+  "note": "Amazon AWS \u00b7 Hyperscale (baxtel: construction)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Amazon: Villanueva de G\u00e1llego 2",
+  "lat": 41.77387,
+  "lon": -0.82466,
+  "status": "land",
+  "note": "Amazon AWS \u00b7 Hyperscale (baxtel: landbank)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Forestalia: Botorrita Expansion",
+  "lat": 41.54405,
+  "lon": -0.97572,
+  "status": "announced",
+  "note": "Forestalia \u00b7 Energy (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Forestalia: DCM D\u00e9dalo (Botorrita)",
+  "lat": 41.54405,
+  "lon": -0.97572,
+  "status": "announced",
+  "note": "Forestalia \u00b7 Energy (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "DayOne: Zaragoza, Aragon",
+  "lat": 41.28348,
+  "lon": -0.31654,
+  "status": "announced",
+  "note": "DayOne \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Forestalia: Magall\u00f3n Expansion",
+  "lat": 41.57077,
+  "lon": -0.95341,
+  "status": "announced",
+  "note": "Forestalia \u00b7 Energy (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Forestalia: DCM Data (Magall\u00f3n)",
+  "lat": 41.57077,
+  "lon": -0.95341,
+  "status": "announced",
+  "note": "Forestalia \u00b7 Energy (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Amazon: La Puebla de H\u00edjar",
+  "lat": 41.22463,
+  "lon": -0.46898,
+  "status": "announced",
+  "note": "Amazon AWS \u00b7 Hyperscale (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Forestalia: Alfam\u00e9n Expansion",
+  "lat": 41.54585,
+  "lon": -0.97263,
+  "status": "announced",
+  "note": "Forestalia \u00b7 Energy (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Forestalia: DCM Blue (Alfam\u00e9n)",
+  "lat": 41.54585,
+  "lon": -0.97263,
+  "status": "announced",
+  "note": "Forestalia \u00b7 Energy (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "QTS: Calatorao, Zaragoza",
+  "lat": 41.51629,
+  "lon": -1.29879,
+  "status": "announced",
+  "note": "QTS Data Centers \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Amazon: La Cartuja",
+  "lat": 41.56126,
+  "lon": -0.85899,
+  "status": "announced",
+  "note": "Amazon AWS \u00b7 Hyperscale (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "ACS: Aragon",
+  "lat": 41.63495,
+  "lon": -0.74844,
+  "status": "announced",
+  "note": "Grupo ACS \u00b7 Real Estate (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "QTS: Calatorao Expansion",
+  "lat": 41.51732,
+  "lon": -1.29673,
+  "status": "announced",
+  "note": "QTS Data Centers \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "VDPC CLS & Data Center",
+  "lat": 39.67575,
+  "lon": -0.26882,
+  "status": "announced",
+  "note": "Valencia Digital Port Connect  (VDPC) \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Grupo Aire OASIX: Alicante",
+  "lat": 38.29128,
+  "lon": -0.61111,
+  "status": "operating",
+  "note": "Oasix | Grupo Aire \u00b7 MSP (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Logistics Data Campus Villena",
+  "lat": 38.65227,
+  "lon": -0.89436,
+  "status": "announced",
+  "note": "L14 REIS \u00b7 Energy (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "FullSave: Auch, France",
+  "lat": 43.64626,
+  "lon": 0.58674,
+  "status": "operating",
+  "note": "Eurofiber \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Serosense: Alcarr\u00e0s, Catalonia",
+  "lat": 41.5628,
+  "lon": 0.5246,
+  "status": "announced",
+  "note": "Serosense \u00b7 Energy (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "FullSave: TLS00",
+  "lat": 43.62017,
+  "lon": 1.42136,
+  "status": "operating",
+  "note": "Eurofiber \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Cogent Toulouse",
+  "lat": 43.62017,
+  "lon": 1.42239,
+  "status": "operating",
+  "note": "Cogent Communications \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "GTT Toulouse",
+  "lat": 43.64104,
+  "lon": 1.42857,
+  "status": "operating",
+  "note": "EXA Infrastructure \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Etix: Toulhouse #1",
+  "lat": 43.62539,
+  "lon": 1.48727,
+  "status": "operating",
+  "note": "Etix Everywhere \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "FullSave: LBG01",
+  "lat": 43.54258,
+  "lon": 1.50959,
+  "status": "operating",
+  "note": "Eurofiber \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Kyndryl: Barcelona",
+  "lat": 41.49289,
+  "lon": 2.11006,
+  "status": "operating",
+  "note": "Kyndryl \u00b7 Content (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Renta Corporation: Barcelona",
+  "lat": 41.33738,
+  "lon": 2.11246,
+  "status": "announced",
+  "note": "Renta Corporation \u00b7 Enterprise (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Lumen BCN1",
+  "lat": 41.35104,
+  "lon": 2.12414,
+  "status": "operating",
+  "note": "Lumen Technologies \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Submer: Barcelona",
+  "lat": 41.38737,
+  "lon": 2.16843,
+  "status": "announced",
+  "note": "Submer \u00b7  (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Ark DC: Barcelona",
+  "lat": 41.44118,
+  "lon": 2.19349,
+  "status": "announced",
+  "note": "Ark Data Centres (UK) \u00b7 Carrier-Neutral (baxtel: planned)",
+  "src": "baxtel"
+ },
+ {
+  "name": "ITnow: CD1",
+  "lat": 41.48981,
+  "lon": 2.10732,
+  "status": "operating",
+  "note": "ITnow \u00b7 MSP (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Vodafone: Marratx\u00ed",
+  "lat": 39.64271,
+  "lon": 2.75173,
+  "status": "operating",
+  "note": "Vodafone \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Infotelecom: Palma de Mallorca, Spain",
+  "lat": 39.60384,
+  "lon": 2.66521,
+  "status": "operating",
+  "note": "Infotelecom Networks S.L. \u00b7 Carrier-Neutral (Telco-Owned) (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Templus: Mallorca",
+  "lat": 39.57791,
+  "lon": 2.65629,
+  "status": "operating",
+  "note": "Templus \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "ETIX Montpellier",
+  "lat": 43.58462,
+  "lon": 3.87165,
+  "status": "operating",
+  "note": "Etix Everywhere \u00b7 Carrier-Neutral (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Kyndryl: Montpellier",
+  "lat": 43.61197,
+  "lon": 3.89912,
+  "status": "operating",
+  "note": "Kyndryl \u00b7 Content (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Kyndryl: Grabels",
+  "lat": 43.64999,
+  "lon": 3.78994,
+  "status": "operating",
+  "note": "Kyndryl \u00b7 Content (baxtel: operational)",
+  "src": "baxtel"
+ },
+ {
+  "name": "Cogent Montpellier",
+  "lat": 43.60103,
+  "lon": 3.86238,
+  "status": "operating",
+  "note": "Cogent Communications \u00b7 Carrier (baxtel: operational)",
+  "src": "baxtel"
+ }
+]
