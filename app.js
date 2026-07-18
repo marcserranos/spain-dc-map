@@ -76,6 +76,7 @@ let state = {mode:"gw", w:{}, on:{}, gates:{}, view:"score", showCells:true, sho
 let scores = [], pass = [], clusterHa = [], capex = [], capexDomain = [8,16],
     lcoe = [], lcoeDomain = [60,140], byKey = new Map();
 let selected = -1, clickPt = null, muni = "";
+let footLayer = null, footHandle = null, footOn = false;
 
 function sizing(mode, c){
   const it = mode.it, mix = mode.mix, load = it * PUE, E = load * 8760;   // MWh/yr delivered
@@ -260,6 +261,7 @@ function buildUI(){
   };
   document.getElementById("ov_cells").onchange = e => { state.showCells = e.target.checked; canvasLayer.redraw(); };
   document.getElementById("ov_pv").onchange = e => { state.showFarms = e.target.checked; canvasLayer.redraw(); };
+  document.getElementById("ov_foot").onchange = e => toggleFoot(e.target.checked);
   setMode("gw");
 }
 
@@ -311,6 +313,7 @@ function refresh(){
   drawScatter();
   saveHash();
   if(selected >= 0) showDetail(selected);
+  if(footOn && footHandle) drawFoot(footHandle.getLatLng());  // resize footprint if project mode changed
 }
 
 // ---------- shareable state ----------
@@ -639,6 +642,59 @@ async function lookupParcel(pt){
     if(el()) el().innerHTML = html + `<div class="conf" style="margin-top:5px">Zoom in with the Catastro overlay on to see parcel boundaries; click precisely on a plot to identify it.</div>`;
   }catch(e){
     if(el()) el().innerHTML = `Catastro service unreachable right now. <a href="${gmaps}" target="_blank">Satellite view ↗</a>`;
+  }
+}
+
+// ---------- BYOP footprint-to-scale overlay (draggable, drawn at true geographic scale) ----------
+// Reuses the model's own sizing constants so the drawn area always matches the site math.
+function footGeom(m){
+  const Y = 1750, CF = 0.30;                         // representative good-site solar yield / wind CF
+  const load = m.it * PUE, E = load * 8760;
+  const mwp = E * m.mix.pv / Y;
+  const windMW = m.mix.wind > 0 ? E * m.mix.wind / (8760 * CF) : 0;
+  return {pvHa: mwp*HA_PER_MWP, windHa: windMW*HA_PER_WIND_MW, dcHa: m.it*0.03};
+}
+function drawFoot(center){
+  if(!footLayer) return;
+  footLayer.clearLayers();
+  const m = MODES[state.mode], g = footGeom(m);
+  const lat0 = center.lat, lng0 = center.lng;
+  const mLat = 111320, mLng = 111320*Math.cos(lat0*Math.PI/180);   // metres per degree here
+  const LL = (xm,ym) => [lat0 + ym/mLat, lng0 + xm/mLng];          // x=east, y=north offset in metres
+  const box = (x0,y0,s) => [LL(x0,y0),LL(x0+s,y0),LL(x0+s,y0+s),LL(x0,y0+s)];
+  const S = Math.sqrt(g.pvHa*1e4);                                 // solar-field side (m)
+  L.polygon(box(-S/2,-S/2,S), {color:"#4db3ff",weight:1.5,dashArray:"5 4",fillColor:"#2f6fb0",fillOpacity:0.28})
+    .bindTooltip("Solar field — allocated land (only ~25% is actual panels)",{sticky:true}).addTo(footLayer);
+  const d = Math.sqrt(g.dcHa*1e4);                                 // DC buildings, SW corner, to scale
+  L.polygon(box(-S/2,-S/2,d), {color:"#fff",weight:1,fillColor:"#e05d5d",fillOpacity:0.95})
+    .bindTooltip("Datacenter buildings",{sticky:true}).addTo(footLayer);
+  if(g.windHa > 0){                                                // wind area (dual-use) east of solar
+    const Wd = Math.sqrt(g.windHa*1e4);
+    L.polygon(box(S/2 + S*0.04, -Wd/2, Wd), {color:"#7bc47f",weight:1,fillColor:"#7bc47f",fillOpacity:0.14})
+      .bindTooltip("Wind area — cropland/grazing continues below turbines",{sticky:true}).addTo(footLayer);
+  }
+  const totKm2 = (g.pvHa+g.windHa+g.dcHa)/100, solKm2 = g.pvHa/100;
+  const lbl = `${m.label} BYOP · ${totKm2.toFixed(totKm2<10?1:0)} km² total`
+    + `<br>Solar field ${solKm2.toFixed(solKm2<10?1:0)} km² (~25% actual panels)`
+    + `<br>Buildings ${g.dcHa.toFixed(g.dcHa<10?1:0)} ha · ${Math.round((g.pvHa+g.windHa+g.dcHa)/g.dcHa)}:1 land‑to‑building`;
+  if(footHandle){ footHandle.setLatLng(center); footHandle.setTooltipContent(lbl); }
+}
+function toggleFoot(on){
+  footOn = on;
+  if(on){
+    footLayer = L.layerGroup().addTo(map);
+    const c = map.getCenter();
+    footHandle = L.marker(c, {draggable:true, zIndexOffset:1000,
+      icon: L.divIcon({className:"", iconSize:[26,26], html:
+        `<div style="width:26px;height:26px;border-radius:50%;background:#f5b83d;color:#14171c;display:flex;`
+        + `align-items:center;justify-content:center;font-size:15px;font-weight:700;border:2px solid #14171c;cursor:move">✥</div>`})
+    }).addTo(map);
+    footHandle.bindTooltip("", {permanent:true, direction:"top", offset:[0,-16]});
+    footHandle.on("drag", e => drawFoot(e.target.getLatLng()));
+    drawFoot(c);
+  } else {
+    if(footLayer){ map.removeLayer(footLayer); footLayer = null; }
+    if(footHandle){ map.removeLayer(footHandle); footHandle = null; }
   }
 }
 

@@ -156,6 +156,15 @@ PROMPT = """Eres un analista de infraestructura. Para cada articulo devuelve JSO
 Articulos:
 """
 
+def salvage_json(txt):
+    """Recover a partial items array from JSON truncated mid-string by max_tokens."""
+    i = txt.rfind("},")
+    if i == -1: return None
+    try:
+        return json.loads(txt[:i+1] + "]}")
+    except Exception:
+        return None
+
 def extract(articles):
     key = E("DEEPSEEK_API_KEY")
     model = E("DEEPSEEK_MODEL", "deepseek-v4-flash")
@@ -163,22 +172,34 @@ def extract(articles):
     for i in range(0, len(articles), BATCH):
         chunk = articles[i:i+BATCH]
         body = "".join(f"\n[{j}] TITULAR: {a['title']}\nTEXTO: {a['text'][:TRUNC]}\n" for j, a in enumerate(chunk))
+        parsed = None
         try:
             r = requests.post("https://api.deepseek.com/chat/completions",
                 headers={"Authorization": f"Bearer {key}"},
                 json={"model": model, "response_format": {"type": "json_object"},
                       "messages": [{"role": "user", "content": PROMPT + body}],
-                      "temperature": 0.1, "max_tokens": 1800},
+                      "temperature": 0.1, "max_tokens": 3200},
                 timeout=120)
             r.raise_for_status()
-            items = json.loads(r.json()["choices"][0]["message"]["content"]).get("items", [])
-            for it in items:
-                j = it.get("i")
-                if isinstance(j, int) and 0 <= j < len(chunk):
-                    it["_a"] = chunk[j]
-                    out.append(it)
+            content = r.json()["choices"][0]["message"]["content"]
+            try:
+                parsed = json.loads(content).get("items", [])
+            except json.JSONDecodeError:
+                salvaged = salvage_json(content)
+                if salvaged is None:
+                    raise
+                parsed = salvaged.get("items", [])
+                log(f"batch {i}: recovered {len(parsed)} items from a truncated response")
         except Exception as ex:
-            log(f"llm error batch {i}: {ex}")
+            # hard failure: still mark every article in this chunk as processed (relevant=False)
+            # so a persistently-bad batch costs tokens once, not every day forever.
+            log(f"llm error batch {i}: {ex} — marking {len(chunk)} articles seen, not retried")
+            parsed = [{"i": j, "relevant": False, "confidence": 0} for j in range(len(chunk))]
+        for it in parsed:
+            j = it.get("i")
+            if isinstance(j, int) and 0 <= j < len(chunk):
+                it["_a"] = chunk[j]
+                out.append(it)
     return out
 
 # ---------------- reconcile ----------------
@@ -276,7 +297,9 @@ def push_github(payload):
     tok, repo = E("GH_TOKEN"), E("GH_REPO")
     if not tok or not repo:
         log("GH_TOKEN/GH_REPO unset — skipping publish"); return False
-    path, api = "web/data/dc_live.json", f"https://api.github.com/repos/{repo}/contents/"
+    # NOTE: path is relative to the deployed Pages repo root (deploy_pages.sh flattens web/ ->
+    # repo root), matching app.js's fetch("data/dc_live.json") — NOT "web/data/..." (v5.1 bug).
+    path, api = "data/dc_live.json", f"https://api.github.com/repos/{repo}/contents/"
     h = {"Authorization": f"Bearer {tok}", "Accept": "application/vnd.github+json"}
     sha = None
     r = requests.get(api + path, headers=h, timeout=30)
