@@ -158,10 +158,18 @@ function viridis(t){
 
 const CellLayer = L.Layer.extend({
   onAdd(m){
-    this._c = L.DomUtil.create("canvas", "", m.getPane("overlayPane"));
+    // "leaflet-zoom-animated" lets the canvas scale in lockstep with the tiles during zoom
+    this._c = L.DomUtil.create("canvas", "leaflet-zoom-animated", m.getPane("overlayPane"));
     this._ctx = this._c.getContext("2d");
     m.on("moveend zoomend resize", this.redraw, this);
+    if(m.options.zoomAnimation && L.Browser.any3d) m.on("zoomanim", this._animateZoom, this);
     this.redraw();
+  },
+  _animateZoom(e){
+    // match Leaflet's own layer transforms so the grid doesn't lag/dephase mid-zoom
+    const m = map, scale = m.getZoomScale(e.zoom);
+    const offset = m._latLngToNewLayerPoint(m.containerPointToLatLng([0,0]), e.zoom, e.center);
+    L.DomUtil.setTransform(this._c, offset, scale);
   },
   redraw(){
     const m = map, size = m.getSize(), z = m.getZoom();
