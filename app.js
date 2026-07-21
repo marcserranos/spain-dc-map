@@ -723,11 +723,11 @@ function toggleFoot(on){
   baseDark = L.layerGroup([
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", {attribution:"© OpenStreetMap, © CARTO", maxZoom:19}),
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", {pane:"shadowPane", maxZoom:19}),
-  ]).addTo(map);
+  ]);
   baseSat = L.layerGroup([
     L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {attribution:"© Esri, Maxar", maxZoom:19}),
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", {pane:"shadowPane", maxZoom:19}),
-  ]);
+  ]).addTo(map);  // satellite on by default
   catWMS = L.tileLayer.wms("https://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx", {
     layers:"Catastro", format:"image/png", transparent:true, minZoom:13, maxZoom:19, attribution:"© DG Catastro"});
 
