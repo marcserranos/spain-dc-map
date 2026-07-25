@@ -2,118 +2,138 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Spain BYOP Datacenter Siting Model</title>
+<title>Iberian Datacenter Intelligence</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live intelligence on Iberian datacenter build-out: tracked projects, capacity, capital and permitting, with a behind-the-meter solar siting model.">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<style>
-  :root{
-    --bg:#14171c; --panel:#1b1f26; --panel2:#232833; --text:#e8eaf0; --dim:#9aa3b2;
-    --accent:#f5b83d; --good:#4caf7d; --bad:#e05d5d; --line:#2e3542;
-  }
-  *{box-sizing:border-box} html,body{height:100%;margin:0}
-  body{display:flex;font:13px/1.45 -apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text)}
-  #side{width:340px;min-width:340px;height:100%;overflow-y:auto;background:var(--panel);border-right:1px solid var(--line);padding:14px 16px}
-  #map{flex:1;height:100%;background:#0e1013}
-  #detail{width:360px;min-width:360px;height:100%;overflow-y:auto;background:var(--panel);border-left:1px solid var(--line);padding:14px 16px;display:none}
-  h1{font-size:16px;margin:0 0 2px} .sub{color:var(--dim);font-size:11px;margin-bottom:12px}
-  h2{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:18px 0 8px}
-  .modes{display:flex;gap:6px}
-  .modes button{flex:1;padding:7px 4px;border:1px solid var(--line);background:var(--panel2);color:var(--dim);border-radius:6px;cursor:pointer;font-size:12px}
-  .modes button.on{background:var(--accent);color:#14171c;border-color:var(--accent);font-weight:600}
-  .modenote{color:var(--dim);font-size:11px;margin-top:6px}
-  .wrow{display:flex;align-items:center;gap:8px;margin:7px 0}
-  .wrow label{flex:1;cursor:pointer} .wrow .val{width:34px;text-align:right;color:var(--dim);font-variant-numeric:tabular-nums}
-  .wrow input[type=range]{width:110px;accent-color:var(--accent)}
-  .wrow input[type=checkbox]{accent-color:var(--accent)}
-  .wrow.off label,.wrow.off .val{color:#555c68}
-  .hint{color:var(--dim);font-size:10.5px;margin:-4px 0 6px 22px}
-  .gaterow{display:flex;align-items:center;gap:8px;margin:6px 0}
-  .gaterow label{flex:1}.gaterow .val{width:56px;text-align:right;color:var(--dim)}
-  .gaterow input[type=range]{width:100px;accent-color:var(--accent)}
-  select{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:5px;padding:4px 6px;width:100%}
-  #toplist .site{padding:7px 9px;border:1px solid var(--line);border-radius:6px;margin:5px 0;cursor:pointer;background:var(--panel2)}
-  #toplist .site:hover{border-color:var(--accent)}
-  #toplist .site b{font-size:12.5px} #toplist .site .m{color:var(--dim);font-size:11px}
-  .score-badge{float:right;font-weight:700;color:var(--accent)}
-  .legend{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--dim);margin-top:6px}
-  .ramp{flex:1;height:8px;border-radius:4px;background:linear-gradient(90deg,#2c1a4d,#20908c,#7ad151,#fde725)}
-  table.kv{width:100%;border-collapse:collapse;font-size:12px}
-  table.kv td{padding:3px 0;border-bottom:1px solid var(--line);vertical-align:top}
-  table.kv td:last-child{text-align:right;color:var(--dim);font-variant-numeric:tabular-nums}
-  .bar{height:5px;border-radius:3px;background:var(--panel2);margin-top:2px;overflow:hidden}
-  .bar i{display:block;height:100%;background:var(--accent)}
-  .stack{display:flex;height:12px;border-radius:4px;overflow:hidden;margin:4px 0 2px}
-  .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
-  .b-good{background:rgba(76,175,125,.18);color:var(--good)} .b-bad{background:rgba(224,93,93,.18);color:var(--bad)}
-  .b-mid{background:rgba(245,184,61,.15);color:var(--accent)}
-  .dossier{background:var(--panel2);border-radius:8px;padding:10px 12px;margin-top:6px;font-size:12px}
-  .dossier .conf{font-size:10.5px;color:var(--dim)}
-  .dossier a{color:var(--accent);font-size:11px;text-decoration:none;word-break:break-all}
-  .close{float:right;cursor:pointer;color:var(--dim);font-size:18px;line-height:1}
-  .footnote{color:#5a6270;font-size:10px;margin-top:16px}
-  .leaflet-container{font:inherit}
-</style>
+<link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
-<div id="side">
-  <h1>Spain BYOP Siting Model</h1>
-  <div class="sub">Behind-the-meter solar + battery datacenter siting · no grid queue<br>
-  Grid context: 88.3% of distribution nodes saturated (Feb 2026); 5.4 TWh renewables curtailed in 2025.</div>
 
-  <h2>Project scale</h2>
-  <div class="modes" id="modes"></div>
-  <div class="modenote" id="modenote"></div>
-
-  <h2>Score weights <span style="color:var(--dim);text-transform:none;letter-spacing:0">(live)</span></h2>
-  <div id="weights"></div>
-
-  <h2>Hard gates</h2>
-  <div id="gates"></div>
-
-  <h2>Map view</h2>
-  <select id="viewsel"></select>
-  <div class="legend"><span id="lg0">low</span><div class="ramp"></div><span id="lg1">high</span></div>
-  <div class="legend"><span style="width:10px;height:10px;background:#3a3f4a;border-radius:2px;display:inline-block"></span> fails hard gates</div>
-  <div class="wrow" style="margin-top:8px"><input type="checkbox" id="bm_sat" checked><label for="bm_sat">Satellite basemap</label></div>
-  <div class="wrow"><input type="checkbox" id="ov_cat"><label for="ov_cat">Catastro parcels <span style="color:var(--dim)">(zoom ≥ 13)</span></label></div>
-  <div class="wrow"><input type="checkbox" id="ov_cells" checked><label for="ov_cells">Model grid</label></div>
-  <div class="wrow"><input type="checkbox" id="ov_pv" checked><label for="ov_pv">Existing solar farms <span style="color:#43d9f5">●</span> <span style="color:var(--dim)">(3,215 · OSM)</span></label></div>
-  <div class="wrow"><input type="checkbox" id="ov_subs"><label for="ov_subs">220/400 kV substations <span style="color:#fff">■</span> <span style="color:var(--dim)">(1,031 · OSM)</span></label></div>
-  <div class="wrow"><input type="checkbox" id="ov_foot"><label for="ov_foot">📐 BYOP footprint to scale <span style="color:var(--dim)">(drag on map)</span></label></div>
-  <div class="legend" style="margin-top:4px">Datacenters (toggle):</div>
-  <div class="legend" style="gap:10px">
-    <label style="cursor:pointer"><input type="checkbox" class="dcst" value="operating" checked style="accent-color:#e05d5d"> <span style="color:#e05d5d">●</span> operating</label>
-    <label style="cursor:pointer"><input type="checkbox" class="dcst" value="construction" checked style="accent-color:#ff9f43"> <span style="color:#ff9f43">●</span> constr.</label>
+<header id="header">
+  <div class="brand">
+    <div class="brand-mark">DC</div>
+    <div>
+      <div class="brand-name">Iberian Datacenter Intelligence</div>
+      <div class="brand-sub">Project tracking · capacity · capital · siting model</div>
+    </div>
   </div>
-  <div class="legend" style="gap:10px">
-    <label style="cursor:pointer"><input type="checkbox" class="dcst" value="announced" checked style="accent-color:#ffe95e"> <span style="color:#ffe95e">●</span> announced</label>
-    <label style="cursor:pointer"><input type="checkbox" class="dcst" value="land" checked style="accent-color:#b388ff"> <span style="color:#b388ff">●</span> land</label>
+  <div id="kpis"><!-- built by ui.js --></div>
+  <div id="header-right">
+    <div class="stamp" id="stamp"></div>
   </div>
-  <div id="feedline" class="legend" style="cursor:pointer;display:none;color:var(--accent)"></div>
+</header>
 
-  <details style="margin-top:14px">
-    <summary style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);cursor:pointer">Assumptions (editable, live)</summary>
-    <div id="assume" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px"></div>
-    <div class="footnote" style="margin-top:6px">Land €/ha defaults are per-CCAA rural (secano) ballparks from MAPA's Encuesta de Precios de la Tierra — approximate; scale with "Land ×". LCOE = annualized capex (CRF) + O&M + backup fuel, over delivered MWh.</div>
-  </details>
+<div id="body">
+  <nav id="rail">
+    <button class="nav on" data-view="map"><span class="nav-ico">🗺</span><span class="nav-lb">Map</span></button>
+    <button class="nav" data-view="projects"><span class="nav-ico">▦</span><span class="nav-lb">Projects</span></button>
+    <button class="nav" data-view="intel"><span class="nav-ico">📰</span><span class="nav-lb">Intel</span></button>
+    <button class="nav" data-view="analytics"><span class="nav-ico">📊</span><span class="nav-lb">Analytics</span></button>
+    <button class="nav" data-view="audit"><span class="nav-ico">🛡</span><span class="nav-lb">Audit</span></button>
+  </nav>
 
-  <h2>Reality check</h2>
-  <canvas id="scatter" width="300" height="130" style="width:100%;background:var(--panel2);border-radius:6px"></canvas>
-  <div id="valstat" style="font-size:10.5px;color:var(--dim);margin-top:4px"></div>
+  <div id="views">
 
-  <h2>Top sites <span id="topcount" style="color:var(--dim);text-transform:none;letter-spacing:0"></span></h2>
-  <div id="toplist"></div>
+    <!-- ===================== MAP ===================== -->
+    <section class="view on" id="v-map">
+      <div class="panel">
+        <div class="sec">Project scale<div class="sec-line"></div></div>
+        <div class="seg" id="modes"></div>
+        <div class="hint" style="margin:8px 0 0 0" id="modenote"></div>
 
-  <div class="footnote">Data: PVGIS v5.3 SARAH3 (solar) · MITECO Zonificación Ambiental FTV 2023 (environmental sensitivity, 25 m) · Copernicus GLO-90 (terrain) · hand-built regulatory dossier from primary sources (Jul 2026). 0.1° cells (~94 km²). Canary Islands excluded in v1.</div>
+        <div class="sec">Map layer<div class="sec-line"></div></div>
+        <select id="viewsel"></select>
+        <div class="ramp-row"><span id="lg0">low</span><div class="ramp"></div><span id="lg1">high</span></div>
+        <div class="ramp-row"><span class="dot" style="background:#3a3f4a;border-radius:2px"></span>
+          <span>fails hard gates</span></div>
+
+        <div class="sec">Layers<div class="sec-line"></div></div>
+        <div class="tog"><input type="checkbox" id="bm_sat" checked><label for="bm_sat">Satellite imagery</label></div>
+        <div class="tog"><input type="checkbox" id="ov_cells" checked><label for="ov_cells">Model grid</label></div>
+        <div class="tog"><input type="checkbox" id="ov_pv"><label for="ov_pv">Existing solar farms</label>
+          <span class="meta" id="m_pv"></span></div>
+        <div class="tog"><input type="checkbox" id="ov_subs"><label for="ov_subs">220/400 kV substations</label>
+          <span class="meta" id="m_subs"></span></div>
+        <div class="tog"><input type="checkbox" id="ov_cat"><label for="ov_cat">Catastro parcels</label>
+          <span class="meta">zoom ≥13</span></div>
+        <div class="tog"><input type="checkbox" id="ov_foot"><label for="ov_foot">Footprint to scale</label>
+          <span class="meta">drag</span></div>
+
+        <div class="sec">Projects on map<div class="sec-line"></div></div>
+        <div id="dcfilters"></div>
+
+        <button class="btn btn-full btn-accent" id="modelbtn" style="margin-top:18px">⚙ Model settings</button>
+
+        <div class="sec">Top sites <span id="topcount" class="muted" style="text-transform:none;letter-spacing:0"></span><div class="sec-line"></div></div>
+        <div id="toplist"></div>
+
+        <div class="foot">0.1° cells (~94 km²). Sources: PVGIS v5.3 SARAH3 · MITECO Zonificación FTV/EOL 2023 · Copernicus GLO-90 · OSM · primary regulatory research.</div>
+      </div>
+
+      <div id="map"></div>
+
+      <div class="panel panel-r" id="detail"></div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section class="view" id="v-projects">
+      <div class="scroll"><div class="wrap-wide" id="projects-body"></div></div>
+    </section>
+
+    <!-- ===================== INTELLIGENCE ===================== -->
+    <section class="view" id="v-intel">
+      <div class="scroll"><div class="wrap" id="intel-body"></div></div>
+    </section>
+
+    <!-- ===================== ANALYTICS ===================== -->
+    <section class="view" id="v-analytics">
+      <div class="scroll"><div class="wrap-wide" id="analytics-body"></div></div>
+    </section>
+
+    <!-- ===================== AUDIT ===================== -->
+    <section class="view" id="v-audit">
+      <div class="scroll"><div class="wrap" id="audit-body"></div></div>
+    </section>
+
+  </div>
 </div>
-<div id="map"></div>
-<div id="detail"></div>
+
+<!-- model settings drawer (progressive disclosure for the siting engine) -->
+<div class="drawer-bg" id="drawerbg"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-h">
+    <div>
+      <h2 class="title">Model settings</h2>
+      <div class="muted" style="font-size:11px">Everything recomputes live</div>
+    </div>
+    <button class="x" id="drawerx">×</button>
+  </div>
+  <div class="drawer-b">
+    <div class="sec">Score weights<div class="sec-line"></div>
+      <span class="sec-act" id="resetw">reset</span></div>
+    <div id="weights"></div>
+    <div class="sec">Hard gates<div class="sec-line"></div></div>
+    <div id="gates"></div>
+    <div class="sec">Cost assumptions<div class="sec-line"></div></div>
+    <div class="agrid" id="assume"></div>
+    <div class="foot">Land €/ha defaults are per-CCAA rural (secano) ballparks from MAPA's Encuesta de
+      Precios de la Tierra — approximate; scale with "Land ×". LCOE = annualised capex (CRF) + O&amp;M
+      + backup fuel, over delivered MWh.</div>
+    <div class="sec">Validation<div class="sec-line"></div></div>
+    <canvas id="scatter" width="330" height="130" style="width:100%;background:var(--panel-2);border-radius:8px"></canvas>
+    <div id="valstat" style="font-size:10.5px;color:var(--dim);margin-top:6px;line-height:1.5"></div>
+  </div>
+</aside>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="data/cells.js?v=9"></script>
 <script src="data/regions.js?v=9"></script>
 <script src="data/solar_farms.js?v=9"></script>
 <script src="data/datacenters.js?v=9"></script>
 <script src="data/substations.js?v=9"></script>
-<script src="app.js?v=12"></script>
+<script src="ui.js?v=15"></script>
+<script src="views.js?v=15"></script>
+<script src="app.js?v=15"></script>
 </body>
 </html>
