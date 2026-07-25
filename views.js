@@ -496,14 +496,79 @@ const AuditView = {
       ${log.length ? `<div class="tl">${logRows}</div>`
         : C.empty("—", "No change history yet", "Every create, update and correction will appear here with its source.")}
 
+      <div class="sec">Operator tools<div class="sec-line"></div></div>
+      <div class="card">
+        <div class="card-t">Run the pipeline now</div>
+        <div style="font-size:11.5px;color:var(--text-2);margin-bottom:8px">Triggers an out-of-schedule
+          ingestion on the collector, then reloads when fresh data is published (~2–4 min). Requires a
+          repository token, which is stored only in this browser.</div>
+        <button class="btn btn-full" id="trigbtn">⚡ Trigger ingestion</button>
+        <div id="trigstat" style="font-size:10.5px;color:var(--dim);margin-top:6px"></div>
+      </div>
+
       <div class="foot">Method: articles are ingested daily, resolved to a canonical project (alias → geography
         → name/operator similarity, with a model confirmation only for ambiguous cases), then written as
         append-only observations. Values are never overwritten: the displayed figure is derived from all
         observations weighted by source reliability, recency and corroboration, and only moves when the
         evidence for a new value overtakes the incumbent. Human corrections take precedence over the
         automated pipeline.</div>`;
+
+    const tb = document.getElementById("trigbtn");
+    if(tb) tb.onclick = triggerIngestion;
   },
 };
+
+/* Manual pipeline trigger — writes a trigger file the collector polls. The token lives only in
+   this browser's localStorage and is never sent anywhere except GitHub's own API. */
+async function triggerIngestion(){
+  const stat = t => { const e = document.getElementById("trigstat"); if(e) e.textContent = t; };
+  let tok = localStorage.getItem("gh_pat");
+  if(!tok){
+    tok = prompt("Repository token with Contents:write (stored only in this browser):");
+    if(!tok) return;
+    localStorage.setItem("gh_pat", tok.trim());
+  }
+  const repo = (KB.raw && KB.raw.repo) || localStorage.getItem("gh_repo");
+  if(!repo){ stat("No repository configured in the knowledge base."); return; }
+  const api = `https://api.github.com/repos/${repo}/contents/web/data/trigger.json`;
+  const h = {"Authorization": `Bearer ${localStorage.getItem("gh_pat")}`,
+             "Accept": "application/vnd.github+json"};
+  try{
+    stat("writing trigger…");
+    let sha;
+    const g = await fetch(api, {headers: h});
+    if(g.ok) sha = (await g.json()).sha;
+    const body = {message: "manual ingestion trigger",
+                  content: btoa(JSON.stringify({requested: new Date().toISOString()}))};
+    if(sha) body.sha = sha;
+    const r = await fetch(api, {method: "PUT", headers: h, body: JSON.stringify(body)});
+    if(!r.ok){
+      stat(`GitHub error ${r.status} — token wrong or lacks Contents write`);
+      if(r.status === 401 || r.status === 403) localStorage.removeItem("gh_pat");
+      return;
+    }
+    stat("trigger written ✓ — waiting for fresh data…");
+    const before = KB.generated;
+    let tries = 0;
+    const iv = setInterval(async () => {
+      tries++;
+      try{
+        const lr = await fetch("data/dc_live.json?ts=" + Date.now());
+        if(lr.ok){
+          const fresh = await lr.json();
+          if(fresh.generated !== before){
+            clearInterval(iv);
+            stat("✅ fresh data published — reloading…");
+            setTimeout(() => location.reload(), 1200);
+            return;
+          }
+        }
+      }catch(e){}
+      stat(`waiting for the collector… ${tries*20}s`);
+      if(tries > 24){ clearInterval(iv); stat("no fresh data after 8 min — check the collector log"); }
+    }, 20000);
+  }catch(e){ stat("error: " + e); }
+}
 
 /* ------------------------------------------------------------- register */
 function registerViews(){
