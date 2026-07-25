@@ -5,18 +5,23 @@
    ========================================================================= */
 "use strict";
 
+/* Event types get a semantic colour rather than an emoji — the label already carries the
+   meaning, and a coloured dot reads as product chrome instead of decoration. */
 const EVENT_META = {
-  land_purchase:     {ico: "🟪", label: "Land purchase"},
-  announcement:      {ico: "📣", label: "Announcement"},
-  permit:            {ico: "📋", label: "Permit"},
-  construction_start:{ico: "🏗", label: "Construction"},
-  operational:       {ico: "🟢", label: "Operational"},
-  expansion:         {ico: "➕", label: "Expansion"},
-  deal:              {ico: "🤝", label: "Deal"},
-  cancelled:         {ico: "❌", label: "Cancelled"},
-  enrichment:        {ico: "🔎", label: "Enrichment"},
+  land_purchase:     {label: "Land purchase", color: "var(--st-land)"},
+  announcement:      {label: "Announcement",  color: "var(--st-announced)"},
+  permit:            {label: "Permit",        color: "var(--st-announced)"},
+  construction_start:{label: "Construction",  color: "var(--st-construction)"},
+  operational:       {label: "Operational",   color: "var(--st-operating)"},
+  expansion:         {label: "Expansion",     color: "var(--st-operating)"},
+  deal:              {label: "Deal",          color: "var(--accent)"},
+  cancelled:         {label: "Cancelled",     color: "var(--st-cancelled)"},
+  enrichment:        {label: "Enrichment",    color: "var(--dim)"},
 };
-const ev = e => EVENT_META[e] || {ico: "•", label: U.titleCase(e || "update")};
+const ev = e => EVENT_META[e] || {label: U.titleCase(e || "update"), color: "var(--dim)"};
+/* one inline marker used everywhere an event is shown */
+const evTag = e => `<span style="display:inline-flex;align-items:center;gap:5px">
+  <span class="dot" style="width:6px;height:6px;background:${ev(e).color}"></span>${U.esc(ev(e).label)}</span>`;
 
 /* ------------------------------------------------------------------ charts */
 const Chart = {
@@ -24,7 +29,7 @@ const Chart = {
      Hover tooltip per column; y-grid recessive; direct label only on the max. */
   columns(rows, opts){
     opts = opts || {};
-    if(!rows.length) return C.empty("📊", "No data yet", "");
+    if(!rows.length) return C.empty("—", "No data yet", "");
     const W = opts.width || 680, H = opts.height || 170, P = {t: 14, r: 10, b: 26, l: 34};
     const max = Math.max(...rows.map(r => r.v), 1);
     const iw = W - P.l - P.r, ih = H - P.t - P.b;
@@ -95,7 +100,7 @@ const ProjectsView = {
 
   render(){
     const el = document.getElementById("projects-body");
-    if(!KB.loaded){ el.innerHTML = C.empty("▦", "Knowledge base not loaded",
+    if(!KB.loaded){ el.innerHTML = C.empty("—", "Knowledge base not loaded",
       "The tracker publishes dc_live.json; the map still works from baked data."); return; }
 
     const by = KB.byStatus();
@@ -185,7 +190,7 @@ const ProjectsView = {
     document.getElementById("ptable").innerHTML = rows.length
       ? `<div class="count" style="margin-bottom:6px">${rows.length} project${rows.length===1?"":"s"}</div>
          <table class="dt"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`
-      : C.empty("🔍", "No projects match", "Try clearing the filters or search.");
+      : C.empty("—", "No projects match", "Try clearing the filters or search.");
 
     document.querySelectorAll("#ptable th.sortable").forEach(th => th.onclick = () => {
       const k = th.dataset.k;
@@ -207,14 +212,14 @@ const IntelView = {
     if(!KB.loaded || !KB.news.length){
       el.innerHTML = `<h1 class="title">Intelligence feed</h1>
         <div class="subtitle">Articles the pipeline has ingested, linked to the projects they affect.</div>
-        ${C.empty("📰", "Nothing ingested yet", "The daily watch populates this feed at 12:15 UTC.")}`;
+        ${C.empty("—", "Nothing ingested yet", "The daily watch populates this feed at 12:15 UTC.")}`;
       return;
     }
     const counts = {};
     for(const n of KB.news) counts[n.event] = (counts[n.event] || 0) + 1;
     const chips = ["all", ...Object.keys(counts).sort((a,b) => counts[b]-counts[a])].map(e =>
       `<button class="chip ${this.event===e?"on":""}" data-ev="${U.esc(e)}">${
-        e === "all" ? `All <b>${KB.news.length}</b>` : `${ev(e).ico} ${U.esc(ev(e).label)} <b>${counts[e]}</b>`}</button>`).join("");
+        e === "all" ? `All <b>${KB.news.length}</b>` : `${evTag(e)} <b>${counts[e]}</b>`}</button>`).join("");
 
     el.innerHTML = `
       <h1 class="title">Intelligence feed</h1>
@@ -245,7 +250,7 @@ const IntelView = {
     const html = shown.map(n => `
       <div class="card" style="margin-bottom:8px">
         <div class="src-meta" style="margin-bottom:3px">
-          <span>${ev(n.event).ico} ${U.esc(ev(n.event).label)}</span>
+          <span>${evTag(n.event)}</span>
           ${n.date ? `<span>· ${U.esc(U.date(n.date))}</span>` : ""}
           ${n.source ? `<span>· ${U.esc(n.source)}</span>` : ""}
           ${C.tier(n.tier)}
@@ -260,7 +265,7 @@ const IntelView = {
       ? `<div class="count" style="margin-bottom:6px">${items.length} article${items.length===1?"":"s"}</div>${html}` +
         (items.length > shown.length
           ? `<button class="btn btn-full" id="imore">Show ${Math.min(60, items.length-shown.length)} more</button>` : "")
-      : C.empty("🔍", "No articles match", "Try a different filter or search term.");
+      : C.empty("—", "No articles match", "Try a different filter or search term.");
 
     const more = document.getElementById("imore");
     if(more) more.onclick = () => { this.limit += 60; this.feed(); };
@@ -271,7 +276,7 @@ const IntelView = {
 const AnalyticsView = {
   render(){
     const el = document.getElementById("analytics-body");
-    if(!KB.loaded){ el.innerHTML = C.empty("📊", "Knowledge base not loaded", ""); return; }
+    if(!KB.loaded){ el.innerHTML = C.empty("—", "Knowledge base not loaded", ""); return; }
     const P = KB.projects, t = KB.totals(), by = KB.byStatus();
 
     /* ---- pipeline by stage: counts and the capacity behind them ---- */
@@ -387,7 +392,7 @@ const AnalyticsView = {
 const AuditView = {
   render(){
     const el = document.getElementById("audit-body");
-    if(!KB.loaded){ el.innerHTML = C.empty("🛡", "Knowledge base not loaded", ""); return; }
+    if(!KB.loaded){ el.innerHTML = C.empty("—", "Knowledge base not loaded", ""); return; }
     const P = KB.projects;
     const runs = KB.runs || [], log = KB.changelog || [], queue = KB.reviewQueue || [];
     const schemaV2 = KB.schema >= 2;
@@ -502,7 +507,7 @@ const AuditView = {
         <div style="font-size:11.5px;color:var(--text-2);margin-bottom:8px">Triggers an out-of-schedule
           ingestion on the collector, then reloads when fresh data is published (~2–4 min). Requires a
           repository token, which is stored only in this browser.</div>
-        <button class="btn btn-full" id="trigbtn">⚡ Trigger ingestion</button>
+        <button class="btn btn-full" id="trigbtn">Trigger ingestion</button>
         <div id="trigstat" style="font-size:10.5px;color:var(--dim);margin-top:6px"></div>
       </div>
 

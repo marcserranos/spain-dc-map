@@ -127,7 +127,7 @@ button{font:inherit}
 .nav.on{color:var(--accent);background:var(--panel-2)}
 .nav.on::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;
   background:var(--accent);border-radius:0 2px 2px 0}
-.nav-ico{font-size:16px;line-height:1}
+.nav-ico{width:19px;height:19px;display:block}
 .nav-lb{font-size:var(--t-9);letter-spacing:.02em;font-weight:550}
 .nav-badge{
   position:absolute;top:5px;right:12px;min-width:15px;height:15px;padding:0 4px;

@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#0c0f13">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f5b83d'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='15' font-weight='bold' text-anchor='middle' fill='%2314171c'%3EDC%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="styles.css?v=17">
+<link rel="stylesheet" href="styles.css?v=18">
 </head>
 <body>
 
@@ -33,11 +33,29 @@
 
 <div id="body">
   <nav id="rail">
-    <button class="nav on" data-view="map"><span class="nav-ico">🗺</span><span class="nav-lb">Map</span></button>
-    <button class="nav" data-view="projects"><span class="nav-ico">▦</span><span class="nav-lb">Projects</span></button>
-    <button class="nav" data-view="intel"><span class="nav-ico">📰</span><span class="nav-lb">Intel</span></button>
-    <button class="nav" data-view="analytics"><span class="nav-ico">📊</span><span class="nav-lb">Analytics</span></button>
-    <button class="nav" data-view="audit"><span class="nav-ico">🛡</span><span class="nav-lb">Audit</span></button>
+    <button class="nav on" data-view="map" title="Map">
+      <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+        <path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4Z"/><path d="M9 4v13"/><path d="M15 6.5v13"/></svg>
+      <span class="nav-lb">Map</span></button>
+    <button class="nav" data-view="projects" title="Projects">
+      <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+        <rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M3 9.5h18"/><path d="M3 14.5h18"/><path d="M9.5 9.5v10"/></svg>
+      <span class="nav-lb">Projects</span></button>
+    <button class="nav" data-view="intel" title="Intelligence feed">
+      <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+        <path d="M4 5.5h13v13a1.5 1.5 0 0 0 1.5 1.5H6a2 2 0 0 1-2-2v-12Z"/><path d="M17 9h3v9.5a1.5 1.5 0 0 1-3 0"/>
+        <path d="M7 9h7M7 12.5h7M7 16h4"/></svg>
+      <span class="nav-lb">Intel</span></button>
+    <button class="nav" data-view="analytics" title="Analytics">
+      <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+        <path d="M4 20V4"/><path d="M4 20h16"/><rect x="7.5" y="12" width="3.2" height="5" rx="1" fill="currentColor" stroke="none"/>
+        <rect x="12.6" y="8" width="3.2" height="9" rx="1" fill="currentColor" stroke="none"/>
+        <rect x="17.7" y="10" width="3.2" height="7" rx="1" fill="currentColor" stroke="none" opacity=".55"/></svg>
+      <span class="nav-lb">Analytics</span></button>
+    <button class="nav" data-view="audit" title="Audit &amp; data quality">
+      <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M12 3.5 5 6.2v6c0 4.2 2.9 7.4 7 8.4 4.1-1 7-4.2 7-8.4v-6L12 3.5Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
+      <span class="nav-lb">Audit</span></button>
   </nav>
 
   <div id="views">
@@ -70,7 +88,7 @@
         <div class="sec">Projects on map<div class="sec-line"></div></div>
         <div id="dcfilters"></div>
 
-        <button class="btn btn-full btn-accent" id="modelbtn" style="margin-top:18px">⚙ Model settings</button>
+        <button class="btn btn-full btn-accent" id="modelbtn" style="margin-top:18px">Model settings</button>
 
         <div class="sec">Top sites <span id="topcount" class="muted" style="text-transform:none;letter-spacing:0"></span><div class="sec-line"></div></div>
         <div id="toplist"></div>
@@ -139,8 +157,8 @@
 <script src="data/solar_farms.js?v=9"></script>
 <script src="data/datacenters.js?v=9"></script>
 <script src="data/substations.js?v=9"></script>
-<script src="ui.js?v=17"></script>
-<script src="views.js?v=17"></script>
-<script src="app.js?v=17"></script>
+<script src="ui.js?v=18"></script>
+<script src="views.js?v=18"></script>
+<script src="app.js?v=18"></script>
 </body>
 </html>

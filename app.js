@@ -429,7 +429,7 @@ function renderTop(){
     d.onclick = () => { select(i, null); map.flyTo([c[F.LAT], c[F.LON]], 10); };
     el.appendChild(d);
   });
-  if(!picks.length) el.innerHTML = C.empty("⚠", "No cells pass the current gates", "Relax them in Model settings.");
+  if(!picks.length) el.innerHTML = C.empty("—", "No cells pass the current gates", "Relax them in Model settings.");
 }
 
 function dist(a,b){
@@ -481,7 +481,7 @@ function showDetail(i){
       ${!isNaN(lcoe[i])?`<div style="margin-left:auto;text-align:right"><div style="font-size:17px;font-weight:650">${lcoe[i].toFixed(0)}</div>
         <div style="font-size:9.5px;color:var(--dim)">€/MWh delivered</div></div>`:""}
     </div>
-    <button class="btn btn-full btn-accent" id="briefbtn">📋 Copy site brief</button>
+    <button class="btn btn-full btn-accent" id="briefbtn">Copy site brief</button>
 
     <div class="sec">Parcel at clicked point<div class="sec-line"></div></div>
     <div class="card" id="parcel" style="font-size:11.5px">Looking up referencia catastral…</div>
@@ -552,7 +552,7 @@ Assumptions: PV ${A.pv} M€/MWp · BESS ${A.bess} M€/MWh · WACC ${A.wacc}% �
 — sources: PVGIS, MITECO Zonificación 2023, Copernicus, OSM, primary regulatory research`;
   navigator.clipboard.writeText(txt).then(() => {
     const b = document.getElementById("briefbtn");
-    b.textContent = "✓ Copied"; setTimeout(()=> b.textContent = "📋 Copy site brief", 1500);
+    b.textContent = "✓ Copied"; setTimeout(()=> b.textContent = "Copy site brief", 1500);
   });
 }
 
@@ -616,14 +616,14 @@ function showDC(d, ci){
       const u = U.safeUrl(n.url);
       return `<div class="card" style="margin-bottom:6px">
         <div class="src-meta" style="margin-bottom:3px">
-          <span>${ev(n.event).ico} ${U.esc(ev(n.event).label)}</span>
+          <span>${evTag(n.event)}</span>
           ${n.date?`<span>· ${U.esc(U.date(n.date))}</span>`:""}
           ${n.source?`<span>· ${U.esc(n.source)}</span>`:""}${C.tier(n.tier)}</div>
         ${u?`<a href="${u}" target="_blank" rel="noopener" style="font-size:12px">${U.esc(n.title)} ↗</a>`
             :`<span style="font-size:12px">${U.esc(n.title)}</span>`}
         ${n.summary?`<div style="font-size:11px;color:var(--text-2);margin-top:3px">${U.esc(n.summary)}</div>`:""}
       </div>`;
-    }).join("") : C.empty("📰", "No tracked news yet",
+    }).join("") : C.empty("—", "No tracked news yet",
         KB.loaded ? "The daily watch adds articles as they appear." : "Live knowledge base not loaded.")}
 
     ${srcs.length > news.length ? `<div class="sec">All sources<div class="sec-line"></div></div>
@@ -740,7 +740,7 @@ function buildProjectLayers(){
           + (p && p.company ? ` · ${U.esc(p.company)}` : "")
           + (p && p.mw ? `<br>${U.esc(U.mw(p.mw))}` : "")
           + (p && p.inv ? ` · ${U.esc(U.eur(p.inv))}` : "")
-          + (p && (p.news||[]).length ? `<br>📰 ${p.news.length} article(s)` : "")
+          + (p && (p.news||[]).length ? `<br>${p.news.length} article(s)` : "")
           + (ci !== undefined && scores[ci] >= 0 ? `<br>model score here: <b>${scores[ci].toFixed(0)}</b>` : "");
       })
       .on("click", ev2 => { L.DomEvent.stopPropagation(ev2); showDC(d, ci); })
