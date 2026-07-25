@@ -166,9 +166,9 @@ h2.title{font-size:var(--t-15);font-weight:600;margin:0 0 2px}
 /* ============================ controls ================================= */
 .seg{display:flex;gap:4px;background:var(--panel-2);padding:3px;border-radius:var(--r);border:1px solid var(--line)}
 .seg button{
-  flex:1;padding:6px 4px;border:0;background:transparent;color:var(--dim);
+  flex:1;min-width:0;padding:6px 4px;border:0;background:transparent;color:var(--dim);
   border-radius:var(--r-sm);cursor:pointer;font-size:var(--t-11);font-weight:550;
-  transition:background .12s,color .12s;white-space:nowrap;
+  transition:background .12s,color .12s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .seg button:hover{color:var(--text-2)}
 .seg button.on{background:var(--accent);color:#14171c;font-weight:650}
@@ -384,11 +384,44 @@ table.kv td.wrap-cell{white-space:normal;text-align:left}
 
 /* responsive: collapse side panels on narrow screens */
 @media (max-width:1180px){
-  .panel{width:290px}
-  .panel-r{width:330px}
+  .panel{width:270px}
+  .panel-r{width:310px}
   #kpis .kpi-opt{display:none}
 }
+@media (max-width:1000px){
+  /* the KPI strip can't survive tablet width as a single row — drop the pipeline
+     legend's text labels (the coloured counts alone still convey stage mix) and
+     shrink the brand block so Map's fixed left panel + map both stay usable */
+  .brand-sub{display:none}
+  #kpis .kpi-l{display:none}
+  #kpis{gap:var(--s-3)}
+}
 @media (max-width:900px){
+  /* below this, the Map view's own LEFT panel (not just the detail panel) is what
+     starves the map of space — float it as a collapsible overlay instead of a
+     permanent column, same treatment as the right panel already had. #body.panel-collapsed
+     (toggled by #panel-toggle, wired in app.js) slides it out of the way so the map can
+     take the full width; a floating button brings it back. */
+  #v-map .panel:not(.panel-r){
+    position:absolute;left:0;top:0;bottom:0;z-index:650;width:280px;box-shadow:var(--shadow);
+    transition:transform .18s;
+  }
+  body.panel-collapsed #v-map .panel:not(.panel-r){transform:translateX(-100%)}
   .panel-r{position:absolute;right:0;top:0;bottom:0;z-index:600;box-shadow:var(--shadow)}
-  #kpis{gap:var(--s-4)}
+  #kpis{display:none}   /* the map + controls need the width more than the KPI strip does */
+  .seg button{font-size:var(--t-10);padding:6px 3px}
+  #panel-toggle{
+    display:flex;position:absolute;left:8px;bottom:8px;z-index:660;width:38px;height:38px;
+    border-radius:var(--r);background:var(--panel);border:1px solid var(--line);color:var(--text-2);
+    align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow);
+  }
+  /* clear of Leaflet's top-left zoom control */
+}
+@media (min-width:901px){ #panel-toggle{display:none} }
+#panel-toggle{display:none}
+@media (max-width:640px){
+  #rail{width:56px}
+  .nav-lb{display:none}
+  #v-map .panel:not(.panel-r){width:88vw;max-width:320px}
+  .panel-r{width:88vw;max-width:320px}
 }

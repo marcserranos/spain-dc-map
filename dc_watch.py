@@ -19,15 +19,25 @@ import trafilatura
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(HERE, "dc_watch.sqlite")
 LOG = os.path.join(HERE, "dc_watch.log")
-MAX_ARTICLES = 40          # daily LLM budget cap
+MAX_ARTICLES = 60          # daily LLM budget cap (the `seen` table means only NEW urls ever cost)
 BATCH = 8                  # articles per LLM call
 TRUNC = 3500               # chars of article text sent to the LLM
 
+# A 2-day window meant that anything the pipeline missed — a skipped run, an article Google
+# surfaced late — was lost permanently, because nothing ever looks backwards. A 7-day window
+# makes the watch self-healing; `seen` still guarantees no article is paid for twice.
 FEEDS = [
-    "https://news.google.com/rss/search?q=%22centro+de+datos%22+when:2d&hl=es&gl=ES&ceid=ES:es",
-    "https://news.google.com/rss/search?q=%22data+center%22+Espa%C3%B1a+when:2d&hl=es&gl=ES&ceid=ES:es",
-    "https://news.google.com/rss/search?q=hiperescala+OR+hyperscale+Espa%C3%B1a+when:2d&hl=es&gl=ES&ceid=ES:es",
+    "https://news.google.com/rss/search?q=%22centro+de+datos%22+when:7d&hl=es&gl=ES&ceid=ES:es",
+    "https://news.google.com/rss/search?q=%22data+center%22+Espa%C3%B1a+when:7d&hl=es&gl=ES&ceid=ES:es",
+    "https://news.google.com/rss/search?q=hiperescala+OR+hyperscale+Espa%C3%B1a+when:7d&hl=es&gl=ES&ceid=ES:es",
+    # status-bearing vocabulary: permits, environmental rulings and groundbreakings are how a
+    # project's STATE changes, and those words rarely co-occur with the generic queries above
+    "https://news.google.com/rss/search?q=%22centro+de+datos%22+(licencia+OR+PIGA+OR+%22impacto+ambiental%22+OR+urbanistico)+when:7d&hl=es&gl=ES&ceid=ES:es",
+    "https://news.google.com/rss/search?q=%22centro+de+datos%22+(obras+OR+construccion+OR+inaugura+OR+expropiacion)+when:7d&hl=es&gl=ES&ceid=ES:es",
+    # discovery by operator — finds projects not yet in the base at all
+    "https://news.google.com/rss/search?q=(AWS+OR+Microsoft+OR+Meta+OR+Google+OR+Equinix+OR+Merlin)+%22centro+de+datos%22+Espa%C3%B1a+when:7d&hl=es&gl=ES&ceid=ES:es",
     "https://www.datacenterdynamics.com/es/rss/",
+    "https://www.datacenterdynamics.com/en/rss/",
 ]
 KEY = re.compile(r"centro de datos|data\s?center|datacenter|cpd\b|hiperescala|hyperscale", re.I)
 

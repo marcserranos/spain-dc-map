@@ -839,6 +839,11 @@ window.Bridge = {
   // platform shell
   renderKPIs();
   registerViews();
+  // narrow screens: start with the control panel collapsed so the map is visible first;
+  // the floating toggle brings it back. Desktop is unaffected (the CSS rule is width-gated).
+  if(window.innerWidth <= 900) document.body.classList.add("panel-collapsed");
+  const pt = document.getElementById("panel-toggle");
+  if(pt) pt.onclick = () => document.body.classList.toggle("panel-collapsed");
   Router.views.map = () => {};
   Router.init();
   Router.badge("audit", KB.reviewQueue.length || KB.totals().review);
