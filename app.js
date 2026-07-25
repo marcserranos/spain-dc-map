@@ -607,7 +607,7 @@ function showDC(d, ci){
       <div class="tl">${changes.slice(0,8).map(c => {
         const u = U.safeUrl(c.url);
         return `<div class="tl-i"><div class="tl-d">${U.esc(U.date(c.ts))}${c.action?` · ${U.esc(c.action)}`:""}</div>
-          <div style="font-size:11.5px">${c.field?`<b>${U.esc(c.field)}</b>: <span class="muted">${U.esc(c.old ?? "—")}</span> → <b class="hl">${U.esc(c.new ?? "—")}</b>`:U.esc(c.note||"")}
+          <div style="font-size:11.5px">${c.field?`<b>${U.esc(U.fieldLabel(c.field))}</b>: <span class="muted">${U.esc(U.fieldValue(c.field, c.old))}</span> → <b class="hl">${U.esc(U.fieldValue(c.field, c.new))}</b>`:U.esc(c.note||"")}
           ${u?` · <a href="${u}" target="_blank" rel="noopener">source ↗</a>`:""}</div></div>`;
       }).join("")}</div>` : ""}
 

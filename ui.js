@@ -38,16 +38,25 @@ const U = {
     return m >= 1000 ? "€" + (m/1000).toFixed(m >= 10000 ? 0 : 1).replace(/\.0$/, "") + "bn"
                      : "€" + U.num(m) + "M";
   },
+  /* dates arrive as ISO ("2026-07-23") from v2 and as RFC-822 ("Thu, 23 Jul 2026 10:00:00 GMT")
+     from v1 RSS rows, so try the whole string before falling back to an ISO-style prefix */
+  _parse(s){
+    if(!s) return null;
+    s = String(s);
+    let d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(s.slice(0, 10)) && s.length <= 10
+                     ? s + "T12:00:00Z" : s);
+    if(!isNaN(d)) return d;
+    d = new Date(s.slice(0, 10));
+    return isNaN(d) ? null : d;
+  },
   date(s){
-    if(!s) return "";
-    const d = new Date(String(s).slice(0, 10));
-    if(isNaN(d)) return String(s).slice(0, 10);
+    const d = U._parse(s);
+    if(!d) return s ? String(s).slice(0, 12) : "";
     return d.toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"});
   },
   ago(s){
-    if(!s) return "";
-    const d = new Date(String(s).length <= 10 ? String(s) + "T12:00:00Z" : s);
-    if(isNaN(d)) return "";
+    const d = U._parse(s);
+    if(!d) return "";
     const days = Math.floor((Date.now() - d.getTime())/864e5);
     if(days < 0) return "today";
     if(days === 0) return "today";
@@ -57,6 +66,19 @@ const U = {
     return Math.floor(days/365) + "y ago";
   },
   titleCase(s){ return s ? s.charAt(0).toUpperCase() + s.slice(1) : ""; },
+  /* internal attribute names are storage detail — never show them to a reader */
+  fieldLabel(f){
+    return ({mw: "Capacity", investment_eur_m: "Investment", company: "Operator",
+             status: "Stage", type: "Type", region: "Region", created: "Record"})[f] || U.titleCase(f);
+  },
+  /* format a changelog value using the unit its field implies */
+  fieldValue(f, v){
+    if(v === null || v === undefined || v === "" || v === "None") return "—";
+    const n = Number(v);
+    if(f === "mw" && !isNaN(n)) return U.mw(n);
+    if(f === "investment_eur_m" && !isNaN(n)) return U.eur(n);
+    return String(v);
+  },
   /* some seed rows stored prose in the operator field ("AWS Aragon region; PIGA expansion
      approved 2026, ~30 buildings planned"). Clip for display; the full text stays in the title. */
   clip(s, n){

@@ -414,7 +414,7 @@ const AuditView = {
         <div class="tl-d">${U.esc(U.date(c.ts))} · ${U.esc(act)}${c.run ? ` · <span class="mono">${U.esc(c.run)}</span>` : ""}</div>
         <div style="font-size:11.5px">
           <b>${U.esc(c.name || c.entity || "—")}</b>
-          ${c.field ? ` · ${U.esc(c.field)}: <span class="muted">${U.esc(c.old ?? "—")}</span> → <b class="hl">${U.esc(c.new ?? "—")}</b>` : ""}
+          ${c.field ? ` · ${U.esc(U.fieldLabel(c.field))}: <span class="muted">${U.esc(U.fieldValue(c.field, c.old))}</span> → <b class="hl">${U.esc(U.fieldValue(c.field, c.new))}</b>` : ""}
           ${url ? ` · <a href="${url}" target="_blank" rel="noopener">source ↗</a>` : ""}
         </div>
         ${c.note ? `<div style="font-size:10.5px;color:var(--faint)">${U.esc(c.note)}</div>` : ""}
@@ -463,9 +463,9 @@ const AuditView = {
         <div class="subtitle" style="margin-bottom:8px">Where sources materially disagree, the model keeps
           every reported value and shows the range instead of flip-flopping between them.</div>
         ${contested.slice(0, 12).map(c => `<div class="card" style="margin-bottom:6px">
-          <b style="font-size:12px">${U.esc(c.p.name)}</b> · <span class="muted">${U.esc(c.k)}</span>
-          <div style="margin-top:4px;font-size:12px">adopted <b class="hl">${U.esc(c.f.value)}</b>
-            ${c.f.range ? `<span class="range">range ${U.esc(c.f.range[0])}–${U.esc(c.f.range[1])}</span>` : ""}
+          <b style="font-size:12px">${U.esc(c.p.name)}</b> · <span class="muted">${U.esc(U.fieldLabel(c.k))}</span>
+          <div style="margin-top:4px;font-size:12px">adopted <b class="hl">${U.esc(U.fieldValue(c.k, c.f.value))}</b>
+            ${c.f.range ? `<span class="range">range ${U.esc(U.fieldValue(c.k, c.f.range[0]))}–${U.esc(U.fieldValue(c.k, c.f.range[1]))}</span>` : ""}
             ${C.conf(c.f)}</div>
           ${C.sources(c.f, "evidence")}
         </div>`).join("")}` : ""}
