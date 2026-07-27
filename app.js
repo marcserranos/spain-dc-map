@@ -446,9 +446,18 @@ function select(i, pt){
   lookupParcel(clickPt);
 }
 
+/* Leaflet only recalculates its own size on the window 'resize' event — a CSS-driven layout
+   change (a flex sibling appearing/disappearing) never fires that, so without this the map keeps
+   rendering at its stale size and the reclaimed/lost space sits blank until the browser window
+   itself is manually resized. Called synchronously, right after the display toggle: reading box
+   geometry (which invalidateSize() does internally) forces the browser to flush layout on demand,
+   so this doesn't need to wait for a paint frame — verified against the post-toggle width directly. */
+function syncMapSize(){ if(map) map.invalidateSize(); }
+
 function closeDetail(){
   document.getElementById("detail").style.display = "none";
   selected = -1; canvasLayer.redraw();
+  syncMapSize();
 }
 
 function showDetail(i){
@@ -466,7 +475,7 @@ function showDetail(i){
   const isa = [["#8c2f39",c[F.FMAX],"Máxima (excluded)"],["#c95d3f",c[F.FMUYALTA],"Muy alta"],["#e0a13f",c[F.FALTA],"Alta"],["#a4c05b",c[F.FMOD],"Moderada"],["#4caf7d",c[F.FBAJA],"Baja"]];
   const windRow = sz.windMW > 0 ? `<tr><td>Wind for ${Math.round(m.mix.wind*100)}% share (CF≈${Math.round(sz.cf*100)}%)</td><td>${Math.round(sz.windMW).toLocaleString()} MW</td></tr>` : "";
   const el = document.getElementById("detail");
-  el.style.display = "block";
+  el.style.display = "block"; syncMapSize();
   el.innerHTML = `
     <div class="detail-h">
       <div>
@@ -559,7 +568,7 @@ Assumptions: PV ${A.pv} M€/MWp · BESS ${A.bess} M€/MWh · WACC ${A.wacc}% �
 /* ---------- project dossier (map right panel) ---------- */
 function showDC(d, ci){
   const el = document.getElementById("detail");
-  el.style.display = "block";
+  el.style.display = "block"; syncMapSize();
   // prefer the normalised KB record (carries provenance); fall back to the baked marker
   const p = d.kb || null;
   const fld = a => p ? KB.field(p, a) : null;
@@ -791,8 +800,14 @@ window.Bridge = {
   }
   DATA.cells.forEach((c,i)=> byKey.set(key(c[F.LAT], c[F.LON]), i));
 
-  map = L.map("map", {zoomControl:true, maxZoom:19}).setView([40.2, -3.6], 6);
+  map = L.map("map", {zoomControl:true, maxZoom:19, keepBuffer: 4}).setView([40.2, -3.6], 6);
   window.map = map;
+  // Leaflet only tracks its own container size via the window 'resize' event — it has no way to
+  // notice a CSS-driven layout change (the detail panel toggling display:none, the left panel
+  // sliding out, a view switch). Without this, the reclaimed/lost space renders as a permanently
+  // blank strip until the browser window itself is manually resized. A ResizeObserver on the
+  // actual container catches every trigger generically, so nothing has to be wired by hand.
+  new ResizeObserver(() => map.invalidateSize()).observe(document.getElementById("map"));
   baseDark = L.layerGroup([
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", {attribution:"© OpenStreetMap, © CARTO", maxZoom:19}),
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", {pane:"shadowPane", maxZoom:19}),

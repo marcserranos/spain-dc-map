@@ -164,11 +164,16 @@ h2.title{font-size:var(--t-15);font-weight:600;margin:0 0 2px}
 .subtitle{font-size:var(--t-11);color:var(--dim);margin-bottom:var(--s-4);line-height:1.5}
 
 /* ============================ controls ================================= */
-.seg{display:flex;gap:4px;background:var(--panel-2);padding:3px;border-radius:var(--r);border:1px solid var(--line)}
+/* 2x2 wrap, not a single row: the left rail is a fixed ~330px regardless of window size, and four
+   full labels ("1 GW solar" / "1 GW hybrid" / "100 MW" / "10 MW edge") never fit one row at any
+   width worth supporting — the previous ellipsis truncation was hiding real content permanently,
+   not just on narrow screens. Wrapping gives each button 2x the room, unconditionally. */
+.seg{display:flex;flex-wrap:wrap;gap:4px;background:var(--panel-2);padding:3px;border-radius:var(--r);border:1px solid var(--line)}
 .seg button{
-  flex:1;min-width:0;padding:6px 4px;border:0;background:transparent;color:var(--dim);
+  flex:1 1 calc(50% - 4px);min-width:0;padding:7px 4px;border:0;background:transparent;color:var(--dim);
   border-radius:var(--r-sm);cursor:pointer;font-size:var(--t-11);font-weight:550;
   transition:background .12s,color .12s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  text-align:center;
 }
 .seg button:hover{color:var(--text-2)}
 .seg button.on{background:var(--accent);color:#14171c;font-weight:650}
@@ -343,12 +348,16 @@ table.kv td.wrap-cell{white-space:normal;text-align:left}
 .ramp{flex:1;height:7px;border-radius:4px;background:linear-gradient(90deg,#2c1a4d,#20908c,#7ad151,#fde725)}
 .ramp-row{display:flex;align-items:center;gap:7px;font-size:var(--t-10);color:var(--dim);margin-top:6px}
 
-/* drawer (model settings — progressive disclosure) */
+/* drawer (model settings — progressive disclosure). Non-blocking by design: the drawer only
+   physically occupies its own 400px on the right, so the tint behind it is a visual cue that
+   something is layered on top, not a modal — the map and left panel stay fully interactive
+   (pan/zoom/click) while it's open. pointer-events stays off throughout, so the old click-outside-
+   to-close no longer applies; close via the × button or Escape. */
 .drawer-bg{
-  position:fixed;inset:0;background:rgba(6,8,11,.6);z-index:900;opacity:0;pointer-events:none;
-  transition:opacity .18s;backdrop-filter:blur(2px);
+  position:fixed;inset:0;background:rgba(6,8,11,.28);z-index:900;opacity:0;pointer-events:none;
+  transition:opacity .18s;
 }
-.drawer-bg.on{opacity:1;pointer-events:auto}
+.drawer-bg.on{opacity:1}
 .drawer{
   position:fixed;top:0;right:0;bottom:0;width:400px;max-width:92vw;background:var(--panel);
   border-left:1px solid var(--line);z-index:901;transform:translateX(100%);
