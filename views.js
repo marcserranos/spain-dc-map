@@ -454,12 +454,17 @@ const AuditView = {
         <div class="sec">Review queue<div class="sec-line"></div></div>
         <div class="subtitle" style="margin-bottom:8px">Auto-created records the resolver was not confident
           about. They are kept separate rather than silently merged into an existing project or silently
-          duplicated.</div>
-        ${queue.map(r => `<div class="card" style="margin-bottom:6px">
+          duplicated. Approving confirms this is a real, distinct project — it doesn't change any of its
+          data, only clears the flag. If it's actually the same site as something else, resolve it from the
+          "Possible duplicates" list below instead.</div>
+        ${queue.map(r => `<div class="card" style="margin-bottom:6px" data-review-card="${U.esc(r.id)}">
           <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">
             <div><b style="font-size:12px">${U.esc(r.name)}</b>
               <div style="font-size:10.5px;color:var(--faint)">created ${U.esc(U.date(r.created))}</div></div>
-            <span class="badge badge-warn">review</span></div>
+            <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+              <span class="badge badge-warn">review</span>
+              <button class="btn btn-sm" data-approve="${U.esc(r.id)}">Approve</button>
+            </div></div>
           ${r.note ? `<div style="font-size:11px;color:var(--text-2);margin-top:5px">${U.esc(r.note)}</div>` : ""}
         </div>`).join("")}` : ""}
 
@@ -482,13 +487,20 @@ const AuditView = {
           different names. Flagged for a human decision and never merged automatically — some near-identical
           pairs are genuinely separate phases of one campus.</div>
         ${KB.duplicates.slice(0, 14).map(p => `
-          <div class="card" style="margin-bottom:6px;display:flex;justify-content:space-between;gap:10px;align-items:center">
-            <div style="min-width:0">
-              <div style="font-size:12px"><b>${U.esc(p.a_name)}</b>
-                <span class="muted">≈</span> <b>${U.esc(p.b_name)}</b></div>
-              <div style="font-size:10.5px;color:var(--faint);margin-top:2px">${U.esc(p.why)}</div>
+          <div class="card" style="margin-bottom:6px" data-dup-card="${U.esc(p.a)}|${U.esc(p.b)}">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+              <div style="min-width:0">
+                <div style="font-size:12px"><b>${U.esc(p.a_name)}</b>
+                  <span class="muted">≈</span> <b>${U.esc(p.b_name)}</b></div>
+                <div style="font-size:10.5px;color:var(--faint);margin-top:2px">${U.esc(p.why)}</div>
+              </div>
+              <span class="badge ${p.score >= 0.95 ? "badge-bad" : "badge-warn"}">${Math.round(p.score*100)}%</span>
             </div>
-            <span class="badge ${p.score >= 0.95 ? "badge-bad" : "badge-warn"}">${Math.round(p.score*100)}%</span>
+            <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+              <button class="btn btn-sm" data-merge-keep="${U.esc(p.a)}" data-merge-drop="${U.esc(p.b)}">Same site — keep "${U.esc(U.clip(p.a_name,22))}"</button>
+              <button class="btn btn-sm" data-merge-keep="${U.esc(p.b)}" data-merge-drop="${U.esc(p.a)}">Same site — keep "${U.esc(U.clip(p.b_name,22))}"</button>
+              <button class="btn btn-sm" data-different="${U.esc(p.a)}|${U.esc(p.b)}">Not a duplicate</button>
+            </div>
           </div>`).join("")}` : ""}
 
       <div class="sec">Pipeline runs<div class="sec-line"></div></div>
@@ -511,6 +523,16 @@ const AuditView = {
         <div id="trigstat" style="font-size:10.5px;color:var(--dim);margin-top:6px"></div>
       </div>
 
+      <div class="card" id="decisions-card" style="${Decisions.pending().length ? "" : "display:none"}">
+        <div class="card-t">Pending review decisions</div>
+        <div style="font-size:11.5px;color:var(--text-2);margin-bottom:8px">Approvals, merges and
+          "not a duplicate" calls made above are queued here first — nothing changes in the knowledge
+          base until you sync. Uses the same repository token as the trigger button above.</div>
+        <div id="dec-list" style="font-size:11px;color:var(--text-2);margin-bottom:8px"></div>
+        <button class="btn btn-full btn-accent" id="decsync">Sync <span id="dec-count">0</span> decision(s)</button>
+        <div id="decstat" style="font-size:10.5px;color:var(--dim);margin-top:6px"></div>
+      </div>
+
       <div class="foot">Method: articles are ingested daily, resolved to a canonical project (alias → geography
         → name/operator similarity, with a model confirmation only for ambiguous cases), then written as
         append-only observations. Values are never overwritten: the displayed figure is derived from all
@@ -520,6 +542,109 @@ const AuditView = {
 
     const tb = document.getElementById("trigbtn");
     if(tb) tb.onclick = triggerIngestion;
+
+    el.querySelectorAll("[data-approve]").forEach(b => b.onclick = () => {
+      Decisions.queue({type: "review", entity_id: b.dataset.approve, decision: "approve"});
+      const card = el.querySelector(`[data-review-card="${CSS.escape(b.dataset.approve)}"]`);
+      if(card){ card.style.opacity = ".45"; card.querySelectorAll("button").forEach(x => x.disabled = true); }
+    });
+    el.querySelectorAll("[data-merge-keep]").forEach(b => b.onclick = () => {
+      Decisions.queue({type: "merge", keep: b.dataset.mergeKeep, drop: b.dataset.mergeDrop});
+      const [a, bId] = [b.dataset.mergeKeep, b.dataset.mergeDrop].sort();
+      const card = [...el.querySelectorAll("[data-dup-card]")]
+        .find(c => c.dataset.dupCard.split("|").sort().join("|") === [a, bId].sort().join("|"));
+      if(card){ card.style.opacity = ".45"; card.querySelectorAll("button").forEach(x => x.disabled = true); }
+    });
+    el.querySelectorAll("[data-different]").forEach(b => b.onclick = () => {
+      const [a, bId] = b.dataset.different.split("|");
+      Decisions.queue({type: "different", a, b: bId});
+      const cardEl = b.closest("[data-dup-card]");
+      if(cardEl){ cardEl.style.opacity = ".45"; cardEl.querySelectorAll("button").forEach(x => x.disabled = true); }
+    });
+
+    Decisions.renderInto(document.getElementById("dec-list"), document.getElementById("dec-count"));
+    const ds = document.getElementById("decsync");
+    if(ds) ds.onclick = () => Decisions.sync();
+  },
+};
+
+/* Human review decisions (approve / merge / not-a-duplicate) made in the Audit view. Queued
+   locally first — nothing touches the knowledge base until Sync writes them to data/decisions.json,
+   which the VM's poller (apply_decisions.py, same 2-minute cadence as the ingestion trigger) reads
+   and applies to the real database. Uses the same repo token already stored for the trigger button. */
+const Decisions = {
+  KEY: "dc_pending_decisions",
+
+  pending(){
+    try{ return JSON.parse(localStorage.getItem(this.KEY) || "[]"); }
+    catch(e){ return []; }
+  },
+  save(list){ localStorage.setItem(this.KEY, JSON.stringify(list)); },
+
+  queue(d){
+    const list = this.pending();
+    d.id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    list.push(d);
+    this.save(list);
+    const card = document.getElementById("decisions-card");
+    if(card) card.style.display = "";
+    this.renderInto(document.getElementById("dec-list"), document.getElementById("dec-count"));
+  },
+
+  describe(d){
+    if(d.type === "review") return `Approve: ${d.entity_id}`;
+    if(d.type === "merge") return `Merge: keep ${d.keep}, drop ${d.drop}`;
+    if(d.type === "different") return `Not a duplicate: ${d.a} / ${d.b}`;
+    return d.type;
+  },
+
+  renderInto(listEl, countEl){
+    const list = this.pending();
+    if(countEl) countEl.textContent = list.length;
+    if(listEl) listEl.innerHTML = list.map(d =>
+      `<div>• ${U.esc(this.describe(d))}</div>`).join("") || "<div class=\"muted\">nothing queued</div>";
+  },
+
+  async sync(){
+    const stat = t => { const e = document.getElementById("decstat"); if(e) e.textContent = t; };
+    const list = this.pending();
+    if(!list.length){ stat("nothing to sync"); return; }
+    let tok = localStorage.getItem("gh_pat");
+    if(!tok){
+      tok = prompt("Repository token with Contents:write (stored only in this browser):");
+      if(!tok) return;
+      localStorage.setItem("gh_pat", tok.trim());
+    }
+    const repo = (KB.raw && KB.raw.repo) || localStorage.getItem("gh_repo");
+    if(!repo){ stat("No repository configured in the knowledge base."); return; }
+    const api = `https://api.github.com/repos/${repo}/contents/data/decisions.json`;
+    const h = {"Authorization": `Bearer ${localStorage.getItem("gh_pat")}`,
+               "Accept": "application/vnd.github+json"};
+    try{
+      stat("syncing…");
+      let sha, existing = [];
+      const g = await fetch(api, {headers: h});
+      if(g.ok){
+        const body = await g.json();
+        sha = body.sha;
+        try{ existing = JSON.parse(atob(body.content)).decisions || []; }catch(e){ existing = []; }
+      }
+      // dedupe against anything already queued remotely (e.g. a previous sync that partially applied)
+      const existingIds = new Set(existing.map(d => d.id));
+      const merged = existing.concat(list.filter(d => !existingIds.has(d.id)));
+      const put = {message: `${list.length} review decision(s)`,
+                   content: btoa(JSON.stringify({decisions: merged}, null, 0))};
+      if(sha) put.sha = sha;
+      const r = await fetch(api, {method: "PUT", headers: h, body: JSON.stringify(put)});
+      if(!r.ok){
+        stat(`GitHub error ${r.status} — token wrong or lacks Contents write`);
+        if(r.status === 401 || r.status === 403) localStorage.removeItem("gh_pat");
+        return;
+      }
+      this.save([]);
+      stat(`synced ✓ — applies within ~2 min, then reload to see it`);
+      this.renderInto(document.getElementById("dec-list"), document.getElementById("dec-count"));
+    }catch(e){ stat("error: " + e); }
   },
 };
 
@@ -535,7 +660,10 @@ async function triggerIngestion(){
   }
   const repo = (KB.raw && KB.raw.repo) || localStorage.getItem("gh_repo");
   if(!repo){ stat("No repository configured in the knowledge base."); return; }
-  const api = `https://api.github.com/repos/${repo}/contents/web/data/trigger.json`;
+  // flat path, matching how dc_live.json is served (deploy_pages.sh flattens web/ -> repo
+  // root) — "web/data/..." would land at a path deploy_pages.sh's rsync --delete wipes on
+  // every UI redeploy, since it only exists in the deployed repo, never in the local source
+  const api = `https://api.github.com/repos/${repo}/contents/data/trigger.json`;
   const h = {"Authorization": `Bearer ${localStorage.getItem("gh_pat")}`,
              "Accept": "application/vnd.github+json"};
   try{
