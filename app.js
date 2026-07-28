@@ -426,7 +426,7 @@ function renderTop(){
         <b style="font-size:12px">${r+1}. ${U.esc(DATA.cities[c[F.CITYI]][0])} area</b>
         <span style="font-weight:700;color:var(--accent);font-size:13px">${scores[i].toFixed(0)}</span></div>
       <div style="font-size:10.5px;color:var(--dim);margin-top:2px">${U.esc(R.name)} · ${c[F.EY]} kWh/kWp · ${Math.round(devFrac(c)*100)}% developable${capex[i]?` · ${capex[i].toFixed(1)} M€/MW`:""}</div>`;
-    d.onclick = () => { select(i, null); map.flyTo([c[F.LAT], c[F.LON]], 10); };
+    d.onclick = () => { select(i, null); map.setView([c[F.LAT], c[F.LON]], 10, {animate:true, duration:.8}); };
     el.appendChild(d);
   });
   if(!picks.length) el.innerHTML = C.empty("—", "No cells pass the current gates", "Relax them in Model settings.");
@@ -780,7 +780,7 @@ window.Bridge = {
     Router.go("map");
     setTimeout(() => {
       map.invalidateSize();
-      map.flyTo([hit.d.lat, hit.d.lon], Math.max(map.getZoom(), 11), {duration: .8});
+      map.setView([hit.d.lat, hit.d.lon], Math.max(map.getZoom(), 11), {animate:true, duration:.8});
       showDC(hit.d, hit.ci);
     }, 90);
   },
